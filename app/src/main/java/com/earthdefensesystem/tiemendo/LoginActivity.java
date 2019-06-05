@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout linearView;
     ScrollView scrollView;
     Context context;
-    Button loginButton;
+    Button loginButton,backendButton;
     EditText emailText, passwordText;
 
     @Override
@@ -52,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         loginButton = findViewById(R.id.login_button);
+        backendButton = findViewById(R.id.backend_button);
+
         emailText = findViewById(R.id.email_edittext);
         passwordText = findViewById(R.id.password_edittext);
 
@@ -62,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final ArrayList<Users> data = new ArrayList<>();
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        backendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String email = emailText.getText().toString();
@@ -133,6 +135,13 @@ public class LoginActivity extends AppCompatActivity {
                     }).start();
                 }
 
+            }
+        });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+                startActivity(i);
             }
         });
     }
