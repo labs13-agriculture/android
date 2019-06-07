@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout linearView;
     ScrollView scrollView;
     Context context;
-    Button loginButton,backendButton;
+    Button loginButton;
     EditText emailText, passwordText;
 
     @Override
@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         loginButton = findViewById(R.id.login_button);
-        backendButton = findViewById(R.id.backend_button);
 
         emailText = findViewById(R.id.email_edittext);
         passwordText = findViewById(R.id.password_edittext);
@@ -54,16 +53,13 @@ public class LoginActivity extends AppCompatActivity {
         scrollView = findViewById(R.id.scroll_view);
         context = this;
 
-
-        final ArrayList<User> data = new ArrayList<>();
-
-        backendButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String email = emailText.getText().toString();
                 final String password = passwordText.getText().toString();
 
-                if(validateLogin(email,password)){
+                if (validateLogin(email, password)) {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -72,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
                             Map<String, String> headerProperties = new HashMap<>();
                             headerProperties.put("Authorization", "Basic " + auth);
 
-                            String tokenUrl= "https://tieme-ndo-backend.herokuapp.com/oauth/token?grant_type=password&username="
-                                    +email+"&password="
-                                    +password+"&scope=";
+                            String tokenUrl = "https://tieme-ndo-backend.herokuapp.com/oauth/token?grant_type=password&username="
+                                    + email + "&password="
+                                    + password + "&scope=";
 
                             String tokenRequest = null;
                             try {
@@ -83,47 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
                             Log.i(TAG, tokenRequest);
-                            try {
-                                String token = new JSONObject(tokenRequest).getString("access_token");
-
-                                headerProperties.clear();
-                                headerProperties.put("Authorization", "Bearer " + token);
-                                try {
-                                    String result = null;
-                                    try {
-                                        result = NetworkAdapter.httpRequest(USER_URL, "GET", null, headerProperties);
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    JSONArray dataJsonArray = new JSONArray(result);
-
-                                    for (int i = 0; i < dataJsonArray.length(); ++i) {
-                                        User user = new User(dataJsonArray.getJSONObject(i));
-                                        data.add(user);
-                                    }
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            for(int i = 0; i < data.size(); i++) {
-                                                TextView textView = new TextView(context);
-                                                final User getUser = data.get(i);
-
-
-                                                textView.setText(String.format("%s",
-                                                        getUser.));
-                                                textView.setTextSize(20);
-                                                linearView.addView(textView);
-                                            }
-                                        }
-                                    });
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
                         }
                     }).start();
                 }
@@ -151,51 +107,4 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
-
-//        loginButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        String result = null;
-//                        try {
-//                            result = NetworkAdapter.httpRequest(USER_URL, "GET", null,null);
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                        JSONArray dataJsonArray = null;
-//                        try {
-//                            dataJsonArray = new JSONArray(result);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        for (int i = 0; i <dataJsonArray.length(); ++i){
-//                            User user = null;
-//                            try {
-//                                user = new User(dataJsonArray.getJSONObject(i));
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                            data.add(user);
-//                        }
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                for(int i = 0; i < data.size(); i++){
-//                                    TextView textView = new TextView(context);
-//                                    final User getUsers = data.get(i);
-//
-//                                    textView.setText(String.format("%s", getUsers.getUsername()));
-//                                    textView.setTextSize(20);
-//                                    linearView.addView(textView);
-//                                }
-//                            }
-//                        });
-//                    }
-//                }).start();
-//            }
-//        });
-//    }
 }

@@ -1,39 +1,45 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class RetailerContact {
-    private long retailercontactid;
+    @SerializedName("retailercontactid")
+    @Expose
+    private Integer retailercontactid;
+    @SerializedName("title")
+    @Expose
     private String title;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("gender")
+    @Expose
     private String gender;
+    @SerializedName("nationality")
+    @Expose
     private String nationality;
+    @SerializedName("dateofbirth")
+    @Expose
     private String dateofbirth;
+    @SerializedName("educationlevel")
+    @Expose
     private String educationlevel;
+    @SerializedName("position")
+    @Expose
     private String position;
+    @SerializedName("phone")
+    @Expose
     private String phone;
+    @SerializedName("email")
+    @Expose
     private String email;
-    private Retailer retailer;
 
-    public RetailerContact(long retailercontactid, String title, String name, String gender,
-                           String nationality, String dateofbirth, String educationlevel,
-                           String position, String phone, String email, Retailer retailer) {
-        this.retailercontactid = retailercontactid;
-        this.title = title;
-        this.name = name;
-        this.gender = gender;
-        this.nationality = nationality;
-        this.dateofbirth = dateofbirth;
-        this.educationlevel = educationlevel;
-        this.position = position;
-        this.phone = phone;
-        this.email = email;
-        this.retailer = retailer;
-    }
-
-    public long getRetailercontactid() {
+    public Integer getRetailercontactid() {
         return retailercontactid;
     }
 
-    public void setRetailercontactid(long retailercontactid) {
+    public void setRetailercontactid(Integer retailercontactid) {
         this.retailercontactid = retailercontactid;
     }
 
@@ -109,11 +115,4 @@ public class RetailerContact {
         this.email = email;
     }
 
-    public Retailer getRetailer() {
-        return retailer;
-    }
-
-    public void setRetailer(Retailer retailer) {
-        this.retailer = retailer;
-    }
 }
