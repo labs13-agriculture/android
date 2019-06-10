@@ -14,11 +14,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.earthdefensesystem.tiemendo.model.Users;
+import com.earthdefensesystem.tiemendo.model.User;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
-import com.earthdefensesystem.tiemendo.network.ResObj;
-import com.earthdefensesystem.tiemendo.network.UserDao;
-import com.earthdefensesystem.tiemendo.network.UserService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,10 +25,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.earthdefensesystem.tiemendo.network.UserDao.USER_URL;
 
@@ -43,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout linearView;
     ScrollView scrollView;
     Context context;
-    Button loginButton;
+    Button loginButton,backendButton;
     EditText emailText, passwordText;
 
     @Override
@@ -52,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         loginButton = findViewById(R.id.login_button);
+        backendButton = findViewById(R.id.backend_button);
+
         emailText = findViewById(R.id.email_edittext);
         passwordText = findViewById(R.id.password_edittext);
 
@@ -60,9 +55,9 @@ public class LoginActivity extends AppCompatActivity {
         context = this;
 
 
-        final ArrayList<Users> data = new ArrayList<>();
+        final ArrayList<User> data = new ArrayList<>();
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        backendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String email = emailText.getText().toString();
@@ -105,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONArray dataJsonArray = new JSONArray(result);
 
                                     for (int i = 0; i < dataJsonArray.length(); ++i) {
-                                        Users user = new Users(dataJsonArray.getJSONObject(i));
+                                        User user = new User(dataJsonArray.getJSONObject(i));
                                         data.add(user);
                                     }
                                     runOnUiThread(new Runnable() {
@@ -113,11 +108,11 @@ public class LoginActivity extends AppCompatActivity {
                                         public void run() {
                                             for(int i = 0; i < data.size(); i++) {
                                                 TextView textView = new TextView(context);
-                                                final Users getUsers = data.get(i);
+                                                final User getUser = data.get(i);
 
 
                                                 textView.setText(String.format("%s",
-                                                        getUsers.getUsername()));
+                                                        getUser.));
                                                 textView.setTextSize(20);
                                                 linearView.addView(textView);
                                             }
@@ -133,6 +128,13 @@ public class LoginActivity extends AppCompatActivity {
                     }).start();
                 }
 
+            }
+        });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+                startActivity(i);
             }
         });
     }
@@ -170,9 +172,9 @@ public class LoginActivity extends AppCompatActivity {
 //                        }
 //
 //                        for (int i = 0; i <dataJsonArray.length(); ++i){
-//                            Users user = null;
+//                            User user = null;
 //                            try {
-//                                user = new Users(dataJsonArray.getJSONObject(i));
+//                                user = new User(dataJsonArray.getJSONObject(i));
 //                            } catch (JSONException e) {
 //                                e.printStackTrace();
 //                            }
@@ -183,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            public void run() {
 //                                for(int i = 0; i < data.size(); i++){
 //                                    TextView textView = new TextView(context);
-//                                    final Users getUsers = data.get(i);
+//                                    final User getUsers = data.get(i);
 //
 //                                    textView.setText(String.format("%s", getUsers.getUsername()));
 //                                    textView.setTextSize(20);

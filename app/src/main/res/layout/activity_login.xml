@@ -81,4 +81,13 @@
             android:orientation="vertical" />
     </ScrollView>
 
+    <Button
+        android:id="@+id/backend_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Load Backend"
+        app:layout_constraintBaseline_toBaselineOf="@+id/login_button"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,6 @@
 package com.earthdefensesystem.tiemendo.network;
 
-import com.earthdefensesystem.tiemendo.model.Users;
+import com.earthdefensesystem.tiemendo.model.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class UserDao {
     public static final String USER_URL = "https://tieme-ndo-backend.herokuapp.com/users";
 
-    public static ArrayList<Users> getUserList() {
-        ArrayList<Users> data = new ArrayList<>();
+    public static ArrayList<User> getUserList() {
+        ArrayList<User> data = new ArrayList<>();
 
         try {
             String result = null;
@@ -25,7 +25,7 @@ public class UserDao {
             JSONArray dataJsonArray = new JSONArray(result);
 
             for (int i = 0; i < dataJsonArray.length(); ++i) {
-                Users user = new Users(dataJsonArray.getJSONObject(i));
+                User user = new User(dataJsonArray.getJSONObject(i));
                 data.add(user);
             }
         } catch (JSONException e) {
