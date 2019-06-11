@@ -55,6 +55,19 @@ public class Retailer {
         this.lead = lead;
     }
 
+    public Retailer(JSONObject json){
+        try {
+            this.name = json.getString("name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.startyear = json.getInt("startyear");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Integer getId() {
         return id;
     }

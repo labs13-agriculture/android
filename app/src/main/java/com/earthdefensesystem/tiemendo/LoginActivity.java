@@ -26,11 +26,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.earthdefensesystem.tiemendo.network.UserDao.USER_URL;
 
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "Agriculture test";
+    public static final String USER_URL = "https://tieme-ndo-backend.herokuapp.com/users";
 
 
     LinearLayout linearView;
@@ -80,17 +80,13 @@ public class LoginActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             Log.i(TAG, tokenRequest);
+
                         }
                     }).start();
                 }
-
-            }
-        });
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
                 startActivity(i);
+
             }
         });
     }
