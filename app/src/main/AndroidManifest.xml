@@ -15,7 +15,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".DashboardActivity"
-            android:label="@string/title_activity_dashboard"></activity>
+            android:label="@string/title_activity_dashboard">
+
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan">
