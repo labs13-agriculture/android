@@ -1,6 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
-public class Yield {
+import java.io.Serializable;
+
+public class Yield implements Serializable {
     private long yieldid;
     private int numbags;
     private int goal;

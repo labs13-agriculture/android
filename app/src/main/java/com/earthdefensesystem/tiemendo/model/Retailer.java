@@ -6,9 +6,10 @@ import com.google.gson.annotations.SerializedName;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Retailer {
+public class Retailer implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;

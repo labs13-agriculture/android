@@ -1,6 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
-public class OrganizationLocation {
+import java.io.Serializable;
+
+public class OrganizationLocation implements Serializable {
     private long organizationlocationid;
     private String address;
     private String district;

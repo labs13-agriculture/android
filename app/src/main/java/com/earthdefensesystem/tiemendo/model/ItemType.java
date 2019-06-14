@@ -1,8 +1,9 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ItemType {
+public class ItemType implements Serializable {
     private long itemtypeid;
     private String name;
     private List<TransactionItem> transactionitems;

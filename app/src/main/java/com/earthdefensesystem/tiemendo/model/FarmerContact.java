@@ -1,6 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
-public class FarmerContact {
+import java.io.Serializable;
+
+public class FarmerContact implements Serializable {
     private long farmercontactid;
     private String title;
     private String name;

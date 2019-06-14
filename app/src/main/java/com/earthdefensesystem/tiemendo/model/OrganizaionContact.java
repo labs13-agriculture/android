@@ -1,6 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
-public class OrganizaionContact {
+import java.io.Serializable;
+
+public class OrganizaionContact implements Serializable {
     private long organizatoncontactid;
     private String name;
     private String phone;

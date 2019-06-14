@@ -3,9 +3,10 @@ package com.earthdefensesystem.tiemendo.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
     private long userid;
     private String username;
     private String password;

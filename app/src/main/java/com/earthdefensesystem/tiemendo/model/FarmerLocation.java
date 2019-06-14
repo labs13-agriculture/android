@@ -1,6 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
-public class FarmerLocation {
+import java.io.Serializable;
+
+public class FarmerLocation implements Serializable {
     private long farmerlocationid;
     private String address;
     private String region;

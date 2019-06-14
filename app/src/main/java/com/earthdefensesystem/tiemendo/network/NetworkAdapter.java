@@ -1,5 +1,7 @@
 package com.earthdefensesystem.tiemendo.network;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;

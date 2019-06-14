@@ -1,9 +1,10 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Transaction {
+public class Transaction implements Serializable {
     private long transactionid;
     private String type;
     private Date date;

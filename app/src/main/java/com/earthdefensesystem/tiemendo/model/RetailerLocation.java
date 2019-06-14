@@ -6,7 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RetailerLocation {
+import java.io.Serializable;
+
+public class RetailerLocation implements Serializable {
     @SerializedName("retailerlocationid")
     @Expose
     private Integer retailerlocationid;
