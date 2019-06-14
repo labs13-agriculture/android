@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RetailerSearchActivity">
+    tools:context=".OrganizationSearchActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/retailer_toolbar"
+            android:id="@+id/organization_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/white"
@@ -23,8 +23,8 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/retailerRecyclerView"
-        android:layout_width="412dp"
+        android:id="@+id/organizationRecyclerView"
+        android:layout_width="408dp"
         android:layout_height="685dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

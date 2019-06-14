@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.earthdefensesystem.tiemendo.DashboardActivity;
+import com.earthdefensesystem.tiemendo.FarmerSearchActivity;
 import com.earthdefensesystem.tiemendo.LoginActivity;
+import com.earthdefensesystem.tiemendo.OrganizationSearchActivity;
 import com.earthdefensesystem.tiemendo.R;
 import com.earthdefensesystem.tiemendo.RetailerSearchActivity;
 
@@ -35,6 +37,20 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), RetailerSearchActivity.class);
                 startActivity(i);
+            }
+        });
+        btnFarmerSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent o = new Intent(getActivity(), FarmerSearchActivity.class);
+                startActivity(o);
+            }
+        });
+        btnOrganizationSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent p = new Intent(getActivity(), OrganizationSearchActivity.class);
+                startActivity(p);
             }
         });
 

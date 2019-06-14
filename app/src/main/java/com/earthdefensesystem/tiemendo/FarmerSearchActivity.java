@@ -8,13 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 
-import com.earthdefensesystem.tiemendo.adapters.RetailerAdapter;
+import com.earthdefensesystem.tiemendo.adapters.FarmerAdapter;
+import com.earthdefensesystem.tiemendo.model.Farmer;
 import com.earthdefensesystem.tiemendo.model.Retailer;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.google.gson.Gson;
@@ -26,38 +27,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-public class RetailerSearchActivity extends AppCompatActivity {
-    public static final String TAG = "Retail";
+public class FarmerSearchActivity extends AppCompatActivity {
+    public static final String TAG = "Farmer";
     private RecyclerView recyclerView;
-    private List<Retailer> retailerList;
-    private RetailerAdapter retailerAdapter;
+    private List<Farmer> farmerList;
+    private FarmerAdapter farmerAdapter;
     private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retailer_search);
+        setContentView(R.layout.activity_farmer_search);
 
-        recyclerView = findViewById(R.id.retailerRecyclerView);
-        Toolbar toolbar = findViewById(R.id.retailer_toolbar);
+        recyclerView = findViewById(R.id.farmerRecyclerView);
+        Toolbar toolbar = findViewById(R.id.farmer_toolbar);
         setSupportActionBar(toolbar);
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.retail_toolbar_title);
+        getSupportActionBar().setTitle(R.string.farmer_toolbar_title);
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
 
 
-        new RetailerSearchActivity.GetRetailersAsync().execute(this);
+        new FarmerSearchActivity.GetFarmersAsync().execute(this);
 
     }
 
 
-    private class GetRetailersAsync extends AsyncTask<Context, Void, List<Retailer>>{
+    private class GetFarmersAsync extends AsyncTask<Context, Void, List<Farmer>> {
 
         private Context context;
 
@@ -67,27 +67,27 @@ public class RetailerSearchActivity extends AppCompatActivity {
         }
 
         @Override
-        protected List<Retailer> doInBackground(Context... contexts) {
+        protected List<Farmer> doInBackground(Context... contexts) {
             context = contexts[0];
-            Log.e(TAG, "start aynctask to get retailers");
-            return getRetailers();
+            Log.e(TAG, "start aynctask to get farmers");
+            return getFarmers();
         }
 
         @Override
-        protected void onPostExecute(List<Retailer> retailers) {
-            super.onPostExecute(retailers);
+        protected void onPostExecute(List<Farmer> farmers) {
+            super.onPostExecute(farmers);
 
-            if(retailers != null){
+            if(farmers != null){
                 Log.e(TAG, "populate UI recycler view with gson converted data");
 
-                retailerAdapter = new RetailerAdapter(context, retailers);
-                recyclerView.setAdapter(retailerAdapter);
+                farmerAdapter = new FarmerAdapter(context, farmers);
+                recyclerView.setAdapter(farmerAdapter);
             }
         }
     }
 
-    public List<Retailer> getRetailers(){
-        String retailerUrl = "https://tieme-ndo-backend.herokuapp.com/retailer/retailers";
+    public List<Farmer> getFarmers(){
+        String farmerUrl = "https://tieme-ndo-backend.herokuapp.com/farmers/all";
         SharedPreferences sharedPreferences = getSharedPreferences("mysettings", MODE_PRIVATE);
         String accessToken = sharedPreferences.getString("mystring", "N/A");
 
@@ -97,7 +97,7 @@ public class RetailerSearchActivity extends AppCompatActivity {
         String tokenRequest = null;
         try {
             tokenRequest = NetworkAdapter.httpRequest(
-                    retailerUrl, "GET", null, headerProperties);
+                    farmerUrl, "GET", null, headerProperties);
 
             return convertJsonToObject(tokenRequest);
         } catch (Exception e) {
@@ -106,16 +106,16 @@ public class RetailerSearchActivity extends AppCompatActivity {
         return null;
     }
 
-    public List<Retailer> convertJsonToObject(String tokenRequest){
+    public List<Farmer> convertJsonToObject(String tokenRequest){
         //instantiate Gson
         final Gson gson = new Gson();
-        Type retailerListType = new TypeToken<ArrayList<Retailer>>(){}.getType();
+        Type farmerListType = new TypeToken<ArrayList<Farmer>>(){}.getType();
 
         //pass root element type to fromJson method along with input stream
-        List<Retailer> retailerList = gson.fromJson(tokenRequest, retailerListType);
+        List<Farmer> farmerList = gson.fromJson(tokenRequest, farmerListType);
 
 
-        return retailerList;
+        return farmerList;
     }
 
     @Override
@@ -135,14 +135,14 @@ public class RetailerSearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // filter recycler view when query submitted
-                retailerAdapter.getFilter().filter(query);
+                farmerAdapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
                 // filter recycler view when text is changed
-                retailerAdapter.getFilter().filter(query);
+                farmerAdapter.getFilter().filter(query);
                 return false;
             }
         });
