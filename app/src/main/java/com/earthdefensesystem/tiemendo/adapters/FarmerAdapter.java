@@ -21,12 +21,14 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
         implements Filterable {
     private List<Farmer> farmerList;
     private List<Farmer> farmerListFiltered;
+    private FarmerAdapterListener listener;
     private Context context;
 
-    public  FarmerAdapter(Context context, List<Farmer> farmerList){
+    public  FarmerAdapter(Context context, List<Farmer> farmerList, FarmerAdapterListener listener){
         this.context = context;
         this.farmerList = farmerList;
         this.farmerListFiltered = farmerList;
+        this.listener = listener;
 
     }
 
@@ -66,15 +68,21 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
     }
 
     class FarmerViewHolder extends RecyclerView.ViewHolder{
-        public final View mView;
 
         TextView farmerName;
 
         FarmerViewHolder(View itemView){
             super(itemView);
-            mView=itemView;
 
-            farmerName = mView.findViewById(R.id.farmer_name);
+            farmerName = itemView.findViewById(R.id.farmer_name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onFarmerSelected(farmerListFiltered.get(getAdapterPosition()));
+                }
+            });
+
+
 
         }
 
@@ -97,5 +105,9 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
     @Override
     public int getItemCount() {
         return farmerList.size();
+    }
+
+    public interface FarmerAdapterListener {
+        void onFarmerSelected(Farmer farmer);
     }
 }

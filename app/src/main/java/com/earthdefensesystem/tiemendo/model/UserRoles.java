@@ -1,6 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
-public class UserRoles {
+import java.io.Serializable;
+
+public class UserRoles implements Serializable {
     private User user;
     private Role role;
 

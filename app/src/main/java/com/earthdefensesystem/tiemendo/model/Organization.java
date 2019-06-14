@@ -1,6 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
-public class Organization {
+import java.io.Serializable;
+
+public class Organization implements Serializable {
     private long id;
     private String name;
     private String headquaters;

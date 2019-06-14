@@ -1,8 +1,9 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Farmer {
+public class Farmer implements Serializable {
     private long farmerid;
     private long startyear;
     private FarmerLocation farmerlocation;
@@ -16,6 +17,8 @@ public class Farmer {
         this.farmercontact = farmercontact;
         this.yieldhistory = yieldhistory;
     }
+
+
 
     public long getFarmerid() {
         return farmerid;

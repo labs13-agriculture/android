@@ -1,8 +1,9 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Auditable {
+public class Auditable implements Serializable {
     private String createdby;
     private Date createddate;
     private String lastmodifiedby;

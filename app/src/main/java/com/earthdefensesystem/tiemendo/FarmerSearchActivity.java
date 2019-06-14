@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,28 +12,57 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.earthdefensesystem.tiemendo.adapters.FarmerAdapter;
 import com.earthdefensesystem.tiemendo.model.Farmer;
+import com.earthdefensesystem.tiemendo.model.FarmerContact;
 import com.earthdefensesystem.tiemendo.model.Retailer;
+import com.earthdefensesystem.tiemendo.network.MyApplication;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FarmerSearchActivity extends AppCompatActivity {
+public class FarmerSearchActivity extends AppCompatActivity implements FarmerAdapter.FarmerAdapterListener{
     public static final String TAG = "Farmer";
     private RecyclerView recyclerView;
     private List<Farmer> farmerList;
     private FarmerAdapter farmerAdapter;
+    private String farmerJson;
     private SearchView searchView;
+    private EditText farmerName, farmerEmail, farmerPhone, farmerAddress;
+    private Button saveFarmerBtn;
+    private FloatingActionButton newFarmerBtn;
+    private PopupWindow farmerPopup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +71,8 @@ public class FarmerSearchActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.farmerRecyclerView);
         Toolbar toolbar = findViewById(R.id.farmer_toolbar);
+        newFarmerBtn = findViewById(R.id.farmer_fab);
+
         setSupportActionBar(toolbar);
 
 
@@ -51,10 +83,77 @@ public class FarmerSearchActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
 
+        newFarmerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater layoutInflater = (LayoutInflater) FarmerSearchActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = layoutInflater.inflate(R.layout.farmer_popup,null);
+                farmerPopup = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                farmerPopup.showAtLocation(recyclerView, Gravity.CENTER, 0, 0);
+                farmerPopup.setFocusable(true);
+                farmerPopup.update();
+
+                saveFarmerBtn = customView.findViewById(R.id.closePopupBtn);
+                farmerName = customView.findViewById(R.id.farmer_name_edittext);
+                farmerEmail = customView.findViewById(R.id.farmer_email_edittext);
+                farmerPhone = customView.findViewById(R.id.farmer_phone_edittext);
+                farmerAddress = customView.findViewById(R.id.farmer_address_edittext);
+
+                saveFarmerBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String email = farmerEmail.getText().toString();
+                        final String name = farmerName.getText().toString();
+                        final String address = farmerAddress.getText().toString();
+                        final String phoneNumber = farmerPhone.getText().toString();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                        JSONObject farmerJson = new JSONObject();
+                        JSONObject farmerContactJson = new JSONObject();
+                        try{
+                        farmerContactJson.put("name", name);
+                        farmerContactJson.put("email", email);
+                        farmerContactJson.put("phone", phoneNumber);
+                        farmerContactJson.put("nationality", address);
+
+                        farmerJson.put("farmercontact", farmerContactJson);
+                        } catch (JSONException e) {
+                        }
+                        SharedPreferences sharedPreferences = getSharedPreferences("mysettings", MODE_PRIVATE);
+                        String accessToken = sharedPreferences.getString("mystring", "N/A");
+
+                        Map<String, String> headerProperties = new HashMap<>();
+                        headerProperties.put("Authorization", "Bearer " + accessToken);
+
+                                try {
+                                    NetworkAdapter.httpRequest("https://tieme-ndo-backend.herokuapp.com/farmers/add", "POST", farmerJson, headerProperties);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+                        farmerPopup.dismiss();
+                    }
+                });
+
+
+
+            }
+        });
+
 
         new FarmerSearchActivity.GetFarmersAsync().execute(this);
 
     }
+
+    @Override
+    public void onFarmerSelected(Farmer farmer) {
+        Toast.makeText(getApplicationContext(), "Selected: " + farmer.getFarmercontact().getEmail(), Toast.LENGTH_LONG).show();
+    }
+
+
 
 
     private class GetFarmersAsync extends AsyncTask<Context, Void, List<Farmer>> {
@@ -80,7 +179,7 @@ public class FarmerSearchActivity extends AppCompatActivity {
             if(farmers != null){
                 Log.e(TAG, "populate UI recycler view with gson converted data");
 
-                farmerAdapter = new FarmerAdapter(context, farmers);
+                farmerAdapter = new FarmerAdapter(context, farmers, FarmerSearchActivity.this);
                 recyclerView.setAdapter(farmerAdapter);
             }
         }
@@ -120,11 +219,11 @@ public class FarmerSearchActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_farmer, menu);
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search)
+        searchView = (SearchView) menu.findItem(R.id.farmer_search)
                 .getActionView();
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
@@ -148,6 +247,16 @@ public class FarmerSearchActivity extends AppCompatActivity {
         });
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        // close search view on back button pressed
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true);
+            return;
+        }
+        super.onBackPressed();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -162,4 +271,5 @@ public class FarmerSearchActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

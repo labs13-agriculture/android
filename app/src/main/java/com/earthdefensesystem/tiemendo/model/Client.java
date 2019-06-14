@@ -1,8 +1,9 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Client {
+public class Client implements Serializable {
     private long clientid;
     private String name;
     private boolean islead;

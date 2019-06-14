@@ -1,8 +1,9 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CropType {
+public class CropType implements Serializable {
     private long croptypeid;
     private String cropname;
     private Boolean active;

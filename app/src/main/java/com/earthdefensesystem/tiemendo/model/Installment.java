@@ -1,8 +1,9 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Installment {
+public class Installment implements Serializable {
     private long installmentid;
     private double amountpaid;
     private Date datepaid;

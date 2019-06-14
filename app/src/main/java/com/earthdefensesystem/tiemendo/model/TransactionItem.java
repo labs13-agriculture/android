@@ -1,6 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
-public class TransactionItem {
+import java.io.Serializable;
+
+public class TransactionItem implements Serializable {
     private long id;
     private int quantity;
     private double unitprice;
