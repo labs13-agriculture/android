@@ -2,6 +2,7 @@ package com.earthdefensesystem.tiemendo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -14,8 +15,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.earthdefensesystem.tiemendo.model.Token;
 import com.earthdefensesystem.tiemendo.model.User;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,10 +32,6 @@ import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity {
-
-    public static final String TAG = "Agriculture test";
-    public static final String USER_URL = "https://tieme-ndo-backend.herokuapp.com/users";
-
 
     LinearLayout linearView;
     ScrollView scrollView;
@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = emailText.getText().toString();
                 final String password = passwordText.getText().toString();
+                final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
                 if (validateLogin(email, password)) {
                     new Thread(new Runnable() {
@@ -79,8 +80,13 @@ public class LoginActivity extends AppCompatActivity {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            Log.i(TAG, tokenRequest);
+                            final Token accessToken = gson.fromJson(tokenRequest, Token.class);
+                            SharedPreferences settings = getSharedPreferences("mysettings",
+                                    MODE_PRIVATE);
 
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putString("mystring", accessToken.getAccessToken());
+                            editor.apply();
                         }
                     }).start();
                 }
