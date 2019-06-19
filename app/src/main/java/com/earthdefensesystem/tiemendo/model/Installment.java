@@ -1,47 +1,58 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class Installment implements Serializable {
-    private long installmentid;
-    private double amountpaid;
-    private Date datepaid;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("amountPaid")
+    @Expose
+    private Double amountPaid;
+    @SerializedName("datePaid")
+    @Expose
+    private String datePaid;
+    @SerializedName("mode")
+    @Expose
     private String mode;
+    @SerializedName("officer")
+    @Expose
     private String officer;
-    private Client client;
 
-    public Installment(long installmentid, double amountpaid, Date datepaid, String mode, String officer, Client client) {
-        this.installmentid = installmentid;
-        this.amountpaid = amountpaid;
-        this.datepaid = datepaid;
+    public Installment(Integer id, Double amountPaid, String datePaid, String mode, String officer) {
+        this.id = id;
+        this.amountPaid = amountPaid;
+        this.datePaid = datePaid;
         this.mode = mode;
         this.officer = officer;
-        this.client = client;
     }
 
-    public long getInstallmentid() {
-        return installmentid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setInstallmentid(long installmentid) {
-        this.installmentid = installmentid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public double getAmountpaid() {
-        return amountpaid;
+    public Double getAmountPaid() {
+        return amountPaid;
     }
 
-    public void setAmountpaid(double amountpaid) {
-        this.amountpaid = amountpaid;
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
     }
 
-    public Date getDatepaid() {
-        return datepaid;
+    public String getDatePaid() {
+        return datePaid;
     }
 
-    public void setDatepaid(Date datepaid) {
-        this.datepaid = datepaid;
+    public void setDatePaid(String datePaid) {
+        this.datePaid = datePaid;
     }
 
     public String getMode() {
@@ -58,13 +69,5 @@ public class Installment implements Serializable {
 
     public void setOfficer(String officer) {
         this.officer = officer;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 }

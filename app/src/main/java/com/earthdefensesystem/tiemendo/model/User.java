@@ -1,5 +1,8 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,9 +10,16 @@ import java.io.Serializable;
 import java.util.List;
 
 public class User implements Serializable {
+    @Expose
+    @SerializedName("userid")
     private long userid;
+    @Expose
+    @SerializedName("username")
     private String username;
+    @SerializedName("password")
     private String password;
+    @SerializedName("userRoles")
+    @Expose
     private List<UserRoles> userroles;
 
     public User(long userid, String username, String password, List<UserRoles> userroles) {

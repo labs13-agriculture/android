@@ -1,32 +1,47 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 public class Transaction implements Serializable {
-    private long transactionid;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("type")
+    @Expose
     private String type;
-    private Date date;
-    private List<TransactionItem> transactionitems;
+    @SerializedName("date")
+    @Expose
+    private String date;
+    @SerializedName("inputs")
+    @Expose
+    private List<TransactionItem> inputs = null;
+    @SerializedName("personnel")
+    @Expose
     private String personnel;
-    private Client client;
+    @SerializedName("total")
+    @Expose
+    private Double total;
 
-    public Transaction(long transactionid, String type, Date date, List<TransactionItem> transactionitems, String personnel, Client client) {
-        this.transactionid = transactionid;
+    public Transaction(Integer id, String type, String date, List<TransactionItem> inputs, String personnel, Double total) {
+        this.id = id;
         this.type = type;
         this.date = date;
-        this.transactionitems = transactionitems;
+        this.inputs = inputs;
         this.personnel = personnel;
-        this.client = client;
+        this.total = total;
     }
 
-    public long getTransactionid() {
-        return transactionid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTransactionid(long transactionid) {
-        this.transactionid = transactionid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getType() {
@@ -37,20 +52,20 @@ public class Transaction implements Serializable {
         this.type = type;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public List<TransactionItem> getTransactionitems() {
-        return transactionitems;
+    public List<TransactionItem> getInputs() {
+        return inputs;
     }
 
-    public void setTransactionitems(List<TransactionItem> transactionitems) {
-        this.transactionitems = transactionitems;
+    public void setInputs(List<TransactionItem> inputs) {
+        this.inputs = inputs;
     }
 
     public String getPersonnel() {
@@ -61,11 +76,11 @@ public class Transaction implements Serializable {
         this.personnel = personnel;
     }
 
-    public Client getClient() {
-        return client;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 }

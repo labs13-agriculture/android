@@ -6,27 +6,19 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.earthdefensesystem.tiemendo.model.Token;
-import com.earthdefensesystem.tiemendo.model.User;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.password_edittext);
 
         linearView = findViewById(R.id.linear_view);
-        scrollView = findViewById(R.id.scroll_view);
+        scrollView = findViewById(R.id.scroll_view_inventory);
         context = this;
 
         loginButton.setOnClickListener(new View.OnClickListener() {

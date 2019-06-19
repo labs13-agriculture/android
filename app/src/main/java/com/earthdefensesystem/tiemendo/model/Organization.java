@@ -1,38 +1,42 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Organization implements Serializable {
-    private long id;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("name")
+    @Expose
     private String name;
-    private String headquaters;
-    private int beneficiaries;
-    private OrganizaionContact organizaioncontact;
-    private boolean lead;
+    @SerializedName("headquarters")
+    @Expose
+    private String headquarters;
+    @SerializedName("beneficiaries")
+    @Expose
+    private Integer beneficiaries;
+    @SerializedName("lead")
+    @Expose
+    private Boolean lead;
 
-    public Organization(long id, String name, String headquaters, int beneficiaries, OrganizaionContact organizaioncontact, boolean lead) {
+    public Organization(Integer id, String name, String headquarters, Integer beneficiaries,
+                        Boolean lead) {
         this.id = id;
         this.name = name;
-        this.headquaters = headquaters;
+        this.headquarters = headquarters;
         this.beneficiaries = beneficiaries;
-        this.organizaioncontact = organizaioncontact;
         this.lead = lead;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public boolean isLead() {
-        return lead;
-    }
-
-    public void setLead(boolean lead) {
-        this.lead = lead;
     }
 
     public String getName() {
@@ -43,27 +47,27 @@ public class Organization implements Serializable {
         this.name = name;
     }
 
-    public String getHeadquaters() {
-        return headquaters;
+    public String getHeadquarters() {
+        return headquarters;
     }
 
-    public void setHeadquaters(String headquaters) {
-        this.headquaters = headquaters;
+    public void setHeadquarters(String headquarters) {
+        this.headquarters = headquarters;
     }
 
-    public int getBeneficiaries() {
+    public Integer getBeneficiaries() {
         return beneficiaries;
     }
 
-    public void setBeneficiaries(int beneficiaries) {
+    public void setBeneficiaries(Integer beneficiaries) {
         this.beneficiaries = beneficiaries;
     }
 
-    public OrganizaionContact getOrganizaioncontact() {
-        return organizaioncontact;
+    public Boolean getLead() {
+        return lead;
     }
 
-    public void setOrganizaioncontact(OrganizaionContact organizaioncontact) {
-        this.organizaioncontact = organizaioncontact;
+    public void setLead(Boolean lead) {
+        this.lead = lead;
     }
 }

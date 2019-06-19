@@ -1,25 +1,39 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class ItemType implements Serializable {
-    private long itemtypeid;
+
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("name")
+    @Expose
     private String name;
-    private List<TransactionItem> transactionitems;
+    @SerializedName("active")
+    @Expose
+    private Boolean active;
+    @SerializedName("quantity")
+    @Expose
+    private Integer quantity;
 
-    public ItemType(long itemtypeid, String name, List<TransactionItem> transactionitems) {
-        this.itemtypeid = itemtypeid;
+    public ItemType(Integer id, String name, Boolean active, Integer quantity) {
+        this.id = id;
         this.name = name;
-        this.transactionitems = transactionitems;
+        this.active = active;
+        this.quantity = quantity;
     }
 
-    public long getItemtypeid() {
-        return itemtypeid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setItemtypeid(long itemtypeid) {
-        this.itemtypeid = itemtypeid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,11 +44,19 @@ public class ItemType implements Serializable {
         this.name = name;
     }
 
-    public List<TransactionItem> getTransactionitems() {
-        return transactionitems;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setTransactionitems(List<TransactionItem> transactionitems) {
-        this.transactionitems = transactionitems;
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

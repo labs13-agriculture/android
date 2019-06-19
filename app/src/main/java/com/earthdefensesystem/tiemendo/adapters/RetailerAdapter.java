@@ -11,7 +11,6 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.earthdefensesystem.tiemendo.R;
-import com.earthdefensesystem.tiemendo.model.Retailer;
 
 import java.util.ArrayList;
 import java.util.List;

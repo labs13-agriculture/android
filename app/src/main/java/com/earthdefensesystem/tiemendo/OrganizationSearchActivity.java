@@ -14,9 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.earthdefensesystem.tiemendo.adapters.FarmerAdapter;
 import com.earthdefensesystem.tiemendo.adapters.OrganizationAdapter;
-import com.earthdefensesystem.tiemendo.model.Farmer;
 import com.earthdefensesystem.tiemendo.model.Organization;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.google.gson.Gson;

@@ -11,8 +11,6 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.earthdefensesystem.tiemendo.R;
-import com.earthdefensesystem.tiemendo.model.Farmer;
-import com.earthdefensesystem.tiemendo.model.Retailer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +44,7 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getFarmercontact().getName().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getName().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }
@@ -70,7 +68,6 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
     class FarmerViewHolder extends RecyclerView.ViewHolder{
 
         TextView farmerName;
-
         FarmerViewHolder(View itemView){
             super(itemView);
 
@@ -98,7 +95,7 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
 
     @Override
     public void onBindViewHolder(@NonNull FarmerViewHolder viewHolder, int i) {
-        viewHolder.farmerName.setText(farmerList.get(i).getFarmercontact().getName());
+        viewHolder.farmerName.setText(farmerList.get(i).getName());
 
     }
 
