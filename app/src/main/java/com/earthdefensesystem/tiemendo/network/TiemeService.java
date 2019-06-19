@@ -1,10 +1,6 @@
 package com.earthdefensesystem.tiemendo.network;
 
-import com.earthdefensesystem.tiemendo.model.Farmer;
-import com.earthdefensesystem.tiemendo.model.OrganizaionContact;
 import com.earthdefensesystem.tiemendo.model.Organization;
-import com.earthdefensesystem.tiemendo.model.OrganizationLocation;
-import com.earthdefensesystem.tiemendo.model.Retailer;
 
 import java.util.List;
 

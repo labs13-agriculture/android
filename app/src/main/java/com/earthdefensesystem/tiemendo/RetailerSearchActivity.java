@@ -15,7 +15,6 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 
 import com.earthdefensesystem.tiemendo.adapters.RetailerAdapter;
-import com.earthdefensesystem.tiemendo.model.Retailer;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

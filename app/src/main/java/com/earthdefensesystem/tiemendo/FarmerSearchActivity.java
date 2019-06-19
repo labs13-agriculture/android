@@ -2,6 +2,7 @@ package com.earthdefensesystem.tiemendo;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -23,29 +24,15 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.earthdefensesystem.tiemendo.adapters.FarmerAdapter;
-import com.earthdefensesystem.tiemendo.model.Farmer;
-import com.earthdefensesystem.tiemendo.model.FarmerContact;
-import com.earthdefensesystem.tiemendo.model.Retailer;
-import com.earthdefensesystem.tiemendo.network.MyApplication;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -83,6 +70,9 @@ public class FarmerSearchActivity extends AppCompatActivity implements FarmerAda
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
 
+
+        new FarmerSearchActivity.GetFarmersAsync().execute(this);
+
         newFarmerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,11 +103,11 @@ public class FarmerSearchActivity extends AppCompatActivity implements FarmerAda
                         JSONObject farmerJson = new JSONObject();
                         JSONObject farmerContactJson = new JSONObject();
                         try{
-                        farmerContactJson.put("name", name);
                         farmerContactJson.put("email", email);
                         farmerContactJson.put("phone", phoneNumber);
                         farmerContactJson.put("nationality", address);
 
+                        farmerJson.put("name", name);
                         farmerJson.put("farmercontact", farmerContactJson);
                         } catch (JSONException e) {
                         }
@@ -144,13 +134,14 @@ public class FarmerSearchActivity extends AppCompatActivity implements FarmerAda
         });
 
 
-        new FarmerSearchActivity.GetFarmersAsync().execute(this);
-
     }
 
     @Override
     public void onFarmerSelected(Farmer farmer) {
         Toast.makeText(getApplicationContext(), "Selected: " + farmer.getFarmercontact().getEmail(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(FarmerSearchActivity.this, FarmerDetailsActivity.class);
+        intent.putExtra("farmerObject", farmer);
+        startActivity(intent);
     }
 
 

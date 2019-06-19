@@ -1,10 +1,17 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
 
 public class Role implements Serializable {
+    @Expose
+    @SerializedName("roleid")
     private long roleid;
+    @Expose
+    @SerializedName("name")
     private String name;
     private List<UserRoles> userroles;
 

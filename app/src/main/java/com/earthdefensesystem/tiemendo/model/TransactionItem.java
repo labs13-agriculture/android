@@ -1,59 +1,60 @@
 package com.earthdefensesystem.tiemendo.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class TransactionItem implements Serializable {
-    private long id;
-    private int quantity;
-    private double unitprice;
-    private ItemType itemtype;
-    private Transaction transaction;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("quantity")
+    @Expose
+    private Integer quantity;
+    @SerializedName("unitPrice")
+    @Expose
+    private Double unitPrice;
+    @SerializedName("item")
+    @Expose
+    private Object item;
 
-    public TransactionItem(long id, int quantity, double unitprice, ItemType itemtype, Transaction transaction) {
+    public TransactionItem(Integer id, Integer quantity, Double unitPrice, Object item) {
         this.id = id;
         this.quantity = quantity;
-        this.unitprice = unitprice;
-        this.itemtype = itemtype;
-        this.transaction = transaction;
+        this.unitPrice = unitPrice;
+        this.item = item;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public double getUnitprice() {
-        return unitprice;
+    public Double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setUnitprice(double unitprice) {
-        this.unitprice = unitprice;
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
-    public ItemType getItemtype() {
-        return itemtype;
+    public Object getItem() {
+        return item;
     }
 
-    public void setItemtype(ItemType itemtype) {
-        this.itemtype = itemtype;
-    }
-
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
+    public void setItem(Object item) {
+        this.item = item;
     }
 }
