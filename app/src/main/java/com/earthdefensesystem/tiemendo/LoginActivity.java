@@ -67,7 +67,10 @@ public class LoginActivity extends AppCompatActivity {
                     call.enqueue(new Callback<Token>() {
                         @Override
                         public void onResponse(Call<Token> call, Response<Token> response) {
-                            Log.e(TAG, response.toString());
+                            Log.e(TAG, response.body().toString());
+                            Token token = response.body();
+                            String accessToken = token.getAccessToken();
+                            Log.e(TAG, accessToken);
                         }
 
                         @Override
