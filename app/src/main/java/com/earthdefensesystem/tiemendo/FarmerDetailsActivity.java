@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.earthdefensesystem.tiemendo.model.Client;
 import com.earthdefensesystem.tiemendo.model.Installment;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 
@@ -48,22 +49,22 @@ public class FarmerDetailsActivity extends AppCompatActivity {
         context = this;
 
         Intent intent = getIntent();
-        final Farmer farmer = (Farmer)intent.getSerializableExtra("farmerObject");
+        final Client farmer = (Client)intent.getSerializableExtra("farmerObject");
 
-        farmerName.setText(farmer.getName());
-        farmerEmail.setText(farmer.getFarmercontact().getEmail());
+        farmerName.setText(farmer.getFirstName());
+        farmerEmail.setText(farmer.getAddress());
 
-        List<Installment> farmerInstallments = farmer.getInstallments();
+//        List<Installment> farmerInstallments = farmer.getDateofbirth();
+//
+//
+//        for (int i = 0; i <farmerInstallments.size(); i++){
+//            TextView tv = new TextView(context);
+//            final Installment getInstallment = farmerInstallments.get(i);
+//            tv.setText(getInstallment.getDatepaid() + "  " + getInstallment.getAmountpaid());
+//            tv.setTextSize(18);
+//            linearLayout.addView(tv);
 
-
-        for (int i = 0; i <farmerInstallments.size(); i++){
-            TextView tv = new TextView(context);
-            final Installment getInstallment = farmerInstallments.get(i);
-            tv.setText(getInstallment.getDatepaid() + "  " + getInstallment.getAmountpaid());
-            tv.setTextSize(18);
-            linearLayout.addView(tv);
-
-        }
+//        }
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
