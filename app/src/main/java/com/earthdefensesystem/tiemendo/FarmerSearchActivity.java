@@ -32,22 +32,12 @@ import android.widget.Toast;
 import com.earthdefensesystem.tiemendo.adapters.ClientAdapter;
 import com.earthdefensesystem.tiemendo.adapters.FarmerAdapter;
 import com.earthdefensesystem.tiemendo.model.Client;
-import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.earthdefensesystem.tiemendo.network.RetrofitClientInstance;
 import com.earthdefensesystem.tiemendo.network.TiemeService;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -183,6 +173,7 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
 
                 if(response.isSuccessful()) {
                     Log.e(TAG, "post submitted to API." + response.body().toString());
+                    farmerPopup.dismiss();
                 } else {
                     Log.e(TAG, "it's MESSING UP AGAIN" + response.code());
                 }

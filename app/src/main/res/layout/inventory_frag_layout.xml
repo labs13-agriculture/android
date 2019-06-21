@@ -62,4 +62,14 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/inventory_recyclerView"
         app:layout_constraintStart_toEndOf="@+id/inventory_item_quantity_tv" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/inventory_active_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
 </android.support.constraint.ConstraintLayout>
