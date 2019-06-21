@@ -87,7 +87,7 @@ public interface TiemeService {
     Call<ItemType> addItemType(@Header("Authorization: Bearer ") String accessToken);
 
     @GET("/itemtype/all")
-    Call<List<ItemType>> getItemTypes(@Header("Authorization: Bearer ") String accessToken);
+    Call<List<ItemType>> getItemTypes(@Header("Authorization") String accessToken);
 
     @PUT("/itemtype/update/{itemtypeid}")
     Call<ItemType> updateItemType(@Header("Authorization: Bearer ") String accessToken,

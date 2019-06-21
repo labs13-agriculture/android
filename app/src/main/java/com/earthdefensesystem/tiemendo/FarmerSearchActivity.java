@@ -22,9 +22,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.earthdefensesystem.tiemendo.adapters.ClientAdapter;
@@ -42,6 +44,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +62,7 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
     private Context context;
     private ClientAdapter adapter;
     private SearchView searchView;
+    private Spinner spinYear;
     private EditText farmerName, farmerEmail, farmerPhone, farmerAddress;
     private Button saveFarmerBtn;
     private FloatingActionButton newFarmerBtn;
@@ -72,6 +76,8 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
 
         Toolbar toolbar = findViewById(R.id.farmer_toolbar);
         newFarmerBtn = findViewById(R.id.farmer_fab);
+
+
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -110,13 +116,22 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
                 farmerPopup.setFocusable(true);
                 farmerPopup.update();
 
+                spinYear = customView.findViewById(R.id.year_start_spinner);
+                ArrayList<String> years = new ArrayList<>();
+                int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+                for (int i = 1900; i <= thisYear; i++) {
+                    years.add(Integer.toString(i));
+                }
+                final ArrayAdapter<String> spinneradapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, years);
+                spinYear.setAdapter(spinneradapter);
+
                 saveFarmerBtn = customView.findViewById(R.id.closePopupBtn);
                 farmerName = customView.findViewById(R.id.farmer_name_edittext);
                 farmerEmail = customView.findViewById(R.id.farmer_email_edittext);
                 farmerPhone = customView.findViewById(R.id.farmer_phone_edittext);
                 farmerAddress = customView.findViewById(R.id.farmer_address_edittext);
 
-                farmerPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher("GH"));
+                farmerPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
                 saveFarmerBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -156,7 +171,6 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
 
     @Override
     public void onClientSelected(Client farmer) {
-        Toast.makeText(getApplicationContext(), "Selected: " + farmer.getFirstName(), Toast.LENGTH_LONG).show();
         Intent intent = new Intent(FarmerSearchActivity.this, FarmerDetailsActivity.class);
         intent.putExtra("farmerObject", farmer);
         startActivity(intent);
