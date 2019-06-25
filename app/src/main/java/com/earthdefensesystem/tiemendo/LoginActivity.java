@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.earthdefensesystem.tiemendo.model.Token;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
+import com.earthdefensesystem.tiemendo.network.RetrofitClientInstance;
+import com.earthdefensesystem.tiemendo.network.TiemeService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -22,8 +25,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class LoginActivity extends AppCompatActivity {
+
+    public static final String TAG = "Golly";
 
     LinearLayout linearView;
     ScrollView scrollView;
@@ -52,38 +61,58 @@ public class LoginActivity extends AppCompatActivity {
                 final String password = passwordText.getText().toString();
                 final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
-                if (validateLogin(email, password)) {
-                    new Thread(new Runnable() {
+                if(validateLogin(email, password)){
+                    TiemeService service = RetrofitClientInstance.getRetrofitInstance().create(TiemeService.class);
+                    Call<Token> call = service.getAccessToken("password", email, password);
+                    call.enqueue(new Callback<Token>() {
                         @Override
-                        public void run() {
-                            String auth = Base64.encodeToString("lambda-client:lambda-secret".getBytes(), Base64.DEFAULT);
-
-                            Map<String, String> headerProperties = new HashMap<>();
-                            headerProperties.put("Authorization", "Basic " + auth);
-
-                            String tokenUrl = "https://tieme-ndo-backend.herokuapp.com/oauth/token?grant_type=password&username="
-                                    + email + "&password="
-                                    + password + "&scope=";
-
-                            String tokenRequest = null;
-                            try {
-                                tokenRequest = NetworkAdapter.httpRequest(
-                                        tokenUrl, "POST", null, headerProperties);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            final Token accessToken = gson.fromJson(tokenRequest, Token.class);
-                            SharedPreferences settings = getSharedPreferences("mysettings",
-                                    MODE_PRIVATE);
-
-                            SharedPreferences.Editor editor = settings.edit();
-                            editor.putString("mystring", accessToken.getAccessToken());
-                            editor.apply();
+                        public void onResponse(Call<Token> call, Response<Token> response) {
+                            Log.e(TAG, response.body().toString());
+                            Token token = response.body();
+                            String accessToken = token.getAccessToken();
+                            Log.e(TAG, accessToken);
                         }
-                    }).start();
+
+                        @Override
+                        public void onFailure(Call<Token> call, Throwable t) {
+                            Log.e(TAG, "Something went wrong");
+
+                        }
+                    });
                 }
-                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
-                startActivity(i);
+
+//                if (validateLogin(email, password)) {
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            String auth = Base64.encodeToString("lambda-client:lambda-secret".getBytes(), Base64.DEFAULT);
+//
+//                            Map<String, String> headerProperties = new HashMap<>();
+//                            headerProperties.put("Authorization", "Basic " + auth);
+//
+//                            String tokenUrl = "https://tieme-ndo-backend.herokuapp.com/oauth/token?grant_type=password&username="
+//                                    + email + "&password="
+//                                    + password + "&scope=";
+//
+//                            String tokenRequest = null;
+//                            try {
+//                                tokenRequest = NetworkAdapter.httpRequest(
+//                                        tokenUrl, "POST", null, headerProperties);
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                            final Token accessToken = gson.fromJson(tokenRequest, Token.class);
+//                            SharedPreferences settings = getSharedPreferences("mysettings",
+//                                    MODE_PRIVATE);
+//
+//                            SharedPreferences.Editor editor = settings.edit();
+//                            editor.putString("mystring", accessToken.getAccessToken());
+//                            editor.apply();
+//                        }
+//                    }).start();
+//                }
+//                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
+//                startActivity(i);
 
             }
         });

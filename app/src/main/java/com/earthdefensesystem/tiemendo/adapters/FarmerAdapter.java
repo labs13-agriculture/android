@@ -11,18 +11,19 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.earthdefensesystem.tiemendo.R;
+import com.earthdefensesystem.tiemendo.model.Client;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerViewHolder>
         implements Filterable {
-    private List<Farmer> farmerList;
-    private List<Farmer> farmerListFiltered;
+    private List<Client> farmerList;
+    private List<Client> farmerListFiltered;
     private FarmerAdapterListener listener;
     private Context context;
 
-    public  FarmerAdapter(Context context, List<Farmer> farmerList, FarmerAdapterListener listener){
+    public  FarmerAdapter(Context context, List<Client> farmerList, FarmerAdapterListener listener){
         this.context = context;
         this.farmerList = farmerList;
         this.farmerListFiltered = farmerList;
@@ -39,12 +40,12 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
                 if (charString.isEmpty()) {
                     farmerListFiltered = farmerList;
                 } else {
-                    List<Farmer> filteredList = new ArrayList<>();
-                    for (Farmer row : farmerList) {
+                    List<Client> filteredList = new ArrayList<>();
+                    for (Client row : farmerList) {
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getName().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getFirstName().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }
@@ -59,7 +60,7 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                farmerListFiltered = (ArrayList<Farmer>) filterResults.values;
+                farmerListFiltered = (ArrayList<Client>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
@@ -95,7 +96,7 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
 
     @Override
     public void onBindViewHolder(@NonNull FarmerViewHolder viewHolder, int i) {
-        viewHolder.farmerName.setText(farmerList.get(i).getName());
+        viewHolder.farmerName.setText(farmerList.get(i).getFirstName());
 
     }
 
@@ -105,6 +106,6 @@ public class FarmerAdapter  extends RecyclerView.Adapter<FarmerAdapter.FarmerVie
     }
 
     public interface FarmerAdapterListener {
-        void onFarmerSelected(Farmer farmer);
+        void onFarmerSelected(Client farmer);
     }
 }

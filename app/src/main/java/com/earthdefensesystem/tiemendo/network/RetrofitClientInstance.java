@@ -3,9 +3,10 @@ package com.earthdefensesystem.tiemendo.network;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
+public class RetrofitClientInstance {
     private static Retrofit retrofit;
     private static final String BASE_URL = "https://tieme-ndo-backend.herokuapp.com";
+    private TiemeService tiemeService;
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

@@ -25,6 +25,7 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.earthdefensesystem.tiemendo.adapters.FarmerAdapter;
+import com.earthdefensesystem.tiemendo.model.Client;
 import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -42,7 +43,7 @@ import java.util.Map;
 public class FarmerSearchActivity extends AppCompatActivity implements FarmerAdapter.FarmerAdapterListener{
     public static final String TAG = "Farmer";
     private RecyclerView recyclerView;
-    private List<Farmer> farmerList;
+    private List<Client> farmerList;
     private FarmerAdapter farmerAdapter;
     private String farmerJson;
     private SearchView searchView;
@@ -137,8 +138,8 @@ public class FarmerSearchActivity extends AppCompatActivity implements FarmerAda
     }
 
     @Override
-    public void onFarmerSelected(Farmer farmer) {
-        Toast.makeText(getApplicationContext(), "Selected: " + farmer.getFarmercontact().getEmail(), Toast.LENGTH_LONG).show();
+    public void onFarmerSelected(Client farmer) {
+        Toast.makeText(getApplicationContext(), "Selected: " + farmer.getFirstName(), Toast.LENGTH_LONG).show();
         Intent intent = new Intent(FarmerSearchActivity.this, FarmerDetailsActivity.class);
         intent.putExtra("farmerObject", farmer);
         startActivity(intent);
@@ -147,7 +148,7 @@ public class FarmerSearchActivity extends AppCompatActivity implements FarmerAda
 
 
 
-    private class GetFarmersAsync extends AsyncTask<Context, Void, List<Farmer>> {
+    private class GetFarmersAsync extends AsyncTask<Context, Void, List<Client>> {
 
         private Context context;
 
@@ -157,14 +158,14 @@ public class FarmerSearchActivity extends AppCompatActivity implements FarmerAda
         }
 
         @Override
-        protected List<Farmer> doInBackground(Context... contexts) {
+        protected List<Client> doInBackground(Context... contexts) {
             context = contexts[0];
             Log.e(TAG, "start aynctask to get farmers");
             return getFarmers();
         }
 
         @Override
-        protected void onPostExecute(List<Farmer> farmers) {
+        protected void onPostExecute(List<Client> farmers) {
             super.onPostExecute(farmers);
 
             if(farmers != null){
@@ -176,7 +177,7 @@ public class FarmerSearchActivity extends AppCompatActivity implements FarmerAda
         }
     }
 
-    public List<Farmer> getFarmers(){
+    public List<Client> getFarmers(){
         String farmerUrl = "https://tieme-ndo-backend.herokuapp.com/farmers/all";
         SharedPreferences sharedPreferences = getSharedPreferences("mysettings", MODE_PRIVATE);
         String accessToken = sharedPreferences.getString("mystring", "N/A");
@@ -196,13 +197,13 @@ public class FarmerSearchActivity extends AppCompatActivity implements FarmerAda
         return null;
     }
 
-    public List<Farmer> convertJsonToObject(String tokenRequest){
+    public List<Client> convertJsonToObject(String tokenRequest){
         //instantiate Gson
         final Gson gson = new Gson();
-        Type farmerListType = new TypeToken<ArrayList<Farmer>>(){}.getType();
+        Type farmerListType = new TypeToken<ArrayList<Client>>(){}.getType();
 
         //pass root element type to fromJson method along with input stream
-        List<Farmer> farmerList = gson.fromJson(tokenRequest, farmerListType);
+        List<Client> farmerList = gson.fromJson(tokenRequest, farmerListType);
 
 
         return farmerList;

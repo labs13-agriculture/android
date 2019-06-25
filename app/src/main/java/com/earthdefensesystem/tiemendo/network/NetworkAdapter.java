@@ -23,7 +23,6 @@ public class NetworkAdapter {
         String result = "";
         InputStream stream = null;
         HttpURLConnection connection = null;
-        ;
 
         try {
             URL apiUrl = new URL(urlString);
