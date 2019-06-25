@@ -1,5 +1,7 @@
 package com.earthdefensesystem.tiemendo.network;
 
+import android.content.ClipData;
+
 import com.earthdefensesystem.tiemendo.FarmerSearchActivity;
 import com.earthdefensesystem.tiemendo.model.Client;
 import com.earthdefensesystem.tiemendo.model.Installment;
@@ -83,11 +85,12 @@ public interface TiemeService {
     Call<Installment> newInstallmentbyClientId(@Path("clientid") String id,
                                                @Header("Authorization: Bearer ") String accessToken);
 
+    @Headers({"Content-Type: application/json"})
     @POST("/itemtype/add")
-    Call<ItemType> addItemType(@Header("Authorization: Bearer ") String accessToken);
+    Call<ItemType> addItemType(@Header("Authorization") String accessToken, @Body ItemType itemType);
 
     @GET("/itemtype/all")
-    Call<List<ItemType>> getItemTypes(@Header("Authorization: Bearer ") String accessToken);
+    Call<List<ItemType>> getItemTypes(@Header("Authorization") String accessToken);
 
     @PUT("/itemtype/update/{itemtypeid}")
     Call<ItemType> updateItemType(@Header("Authorization: Bearer ") String accessToken,

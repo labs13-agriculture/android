@@ -37,13 +37,13 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/farmerRecyclerView"
-        android:layout_width="408dp"
-        android:layout_height="695dp"
+        android:layout_width="406dp"
+        android:layout_height="676dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
