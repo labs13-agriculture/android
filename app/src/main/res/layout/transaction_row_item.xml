@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view_installments"
+    android:id="@+id/card_view_transaction"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardUseCompatPadding="true"
@@ -13,7 +13,7 @@
         >
 
         <TextView
-            android:id="@+id/installment_amount_tv"
+            android:id="@+id/amount_tv"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,45 +23,45 @@
             android:text="10.02" />
 
         <TextView
-            android:id="@+id/installment_mode_tv"
+            android:id="@+id/mode_tv"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
-            android:layout_toEndOf="@+id/installment_amount_tv"
+            android:layout_toEndOf="@+id/amount_tv"
             android:lines="2"
             android:paddingTop="20dp"
             android:text="CREDIT" />
 
         <TextView
-            android:id="@+id/installment_date_tv"
+            android:id="@+id/date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
             android:lines="2"
             android:paddingTop="20dp"
             style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_toEndOf="@+id/installment_mode_tv"
+            android:layout_toEndOf="@+id/mode_tv"
             android:text="2019-06-21" />
 
         <TextView
-            android:id="@+id/installment_officer_tv"
+            android:id="@+id/officer_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="23dp"
             android:lines="2"
             android:paddingTop="20dp"
             style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_toEndOf="@+id/installment_date_tv"
+            android:layout_toEndOf="@+id/date_tv"
             android:text="Joshua" />
 
         <ImageButton
-            android:id="@+id/delete_installment_button"
+            android:id="@+id/delete_transaction_button"
             style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_toEndOf="@+id/installment_officer_tv"
+            android:layout_toEndOf="@+id/officer_tv"
             card_view:srcCompat="@android:drawable/presence_offline" />
 
     </RelativeLayout>

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.earthdefensesystem.tiemendo.fragments.AccountFragment;
 import com.earthdefensesystem.tiemendo.fragments.HomeFragment;
+import com.earthdefensesystem.tiemendo.fragments.InventoryFragment;
 
 public class DashboardActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -52,6 +53,10 @@ public class DashboardActivity extends AppCompatActivity
 
             case R.id.navigation_dashboard:
                 fragment = new AccountFragment();
+                break;
+
+            case R.id.navigation_inventory:
+                fragment = new InventoryFragment();
                 break;
         }
 

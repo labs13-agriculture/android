@@ -59,18 +59,36 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = emailText.getText().toString();
                 final String password = passwordText.getText().toString();
-                final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
-                if(validateLogin(email, password)){
-                    TiemeService service = RetrofitClientInstance.getRetrofitInstance().create(TiemeService.class);
+                if (validateLogin(email, password)) {
+                    TiemeService service = RetrofitClientInstance.getRetrofitInstance()
+                            .create(TiemeService.class);
                     Call<Token> call = service.getAccessToken("password", email, password);
                     call.enqueue(new Callback<Token>() {
                         @Override
                         public void onResponse(Call<Token> call, Response<Token> response) {
-                            Log.e(TAG, response.body().toString());
-                            Token token = response.body();
-                            String accessToken = token.getAccessToken();
-                            Log.e(TAG, accessToken);
+                            if (response.isSuccessful()) {
+                                Token token = response.body();
+                                String accessToken = token.getAccessToken();
+                                Log.e(TAG, accessToken);
+
+                                SharedPreferences settings = getSharedPreferences(
+                                        "mysettings", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = settings.edit();
+                                editor.putString(
+                                        "mystring", token.getAccessToken());
+                                editor.apply();
+                                Intent i = new Intent(
+                                        LoginActivity.this, DashboardActivity.class);
+                                startActivity(i);
+                            } else {
+                                Toast toast = Toast.makeText(
+                                        context, "Username or Password is incorrect",
+                                        Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+
+
                         }
 
                         @Override
@@ -80,40 +98,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                 }
-
-//                if (validateLogin(email, password)) {
-//                    new Thread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            String auth = Base64.encodeToString("lambda-client:lambda-secret".getBytes(), Base64.DEFAULT);
-//
-//                            Map<String, String> headerProperties = new HashMap<>();
-//                            headerProperties.put("Authorization", "Basic " + auth);
-//
-//                            String tokenUrl = "https://tieme-ndo-backend.herokuapp.com/oauth/token?grant_type=password&username="
-//                                    + email + "&password="
-//                                    + password + "&scope=";
-//
-//                            String tokenRequest = null;
-//                            try {
-//                                tokenRequest = NetworkAdapter.httpRequest(
-//                                        tokenUrl, "POST", null, headerProperties);
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//                            final Token accessToken = gson.fromJson(tokenRequest, Token.class);
-//                            SharedPreferences settings = getSharedPreferences("mysettings",
-//                                    MODE_PRIVATE);
-//
-//                            SharedPreferences.Editor editor = settings.edit();
-//                            editor.putString("mystring", accessToken.getAccessToken());
-//                            editor.apply();
-//                        }
-//                    }).start();
-//                }
-//                Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
-//                startActivity(i);
-
             }
         });
     }
