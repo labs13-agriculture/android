@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".FarmerDetailsActivity">
 
     <TextView
@@ -11,9 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textColor="@color/white"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Loading"
+        android:text="@string/loading"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/farmer_detail_email"
@@ -28,7 +30,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="288dp"
-        android:text="TextView"
+        android:text="@string/loading"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +44,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +58,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/farmer_transaction_recyclerview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -66,9 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="36dp"
-        android:text="Transactions"
+        android:text="@string/transactions"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/farmer_transaction_recyclerview"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -76,7 +82,8 @@
         android:id="@+id/amount_details_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Amount"
+        android:text="@string/amount"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/mode_details_tv"
         app:layout_constraintStart_toStartOf="@+id/transaction_tas" />
 
@@ -85,7 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:text="Mode"
+        android:text="@string/mode"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/date_details_tv"
         app:layout_constraintStart_toEndOf="@+id/amount_details_tv" />
 
@@ -94,7 +102,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
-        android:text="Date"
+        android:text="@string/date"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/officer_details_tv"
         app:layout_constraintStart_toEndOf="@+id/mode_details_tv" />
 
@@ -104,7 +113,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
         android:layout_marginTop="8dp"
-        android:text="Officer"
+        android:text="@string/officer"
+        android:textColor="@color/white"
         app:layout_constraintStart_toEndOf="@+id/date_details_tv"
         app:layout_constraintTop_toBottomOf="@+id/transaction_tas" />
 
@@ -114,9 +124,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
-        android:text="Installments"
+        android:text="@string/installments"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/farmer_installment_recyclerview"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -125,7 +136,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Amount Paid"
+        android:text="@string/amount_paid"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -134,7 +146,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:text="Mode"
+        android:text="@string/mode"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/amount_paid_tv"
         app:layout_constraintStart_toEndOf="@+id/amount_paid_tv" />
 
@@ -143,7 +156,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:text="Date"
+        android:text="@string/date"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/installment_mode_tv"
         app:layout_constraintStart_toEndOf="@+id/installment_mode_tv" />
 
@@ -152,7 +166,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
-        android:text="Officer"
+        android:text="@string/officer"
+        android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/installment_date_tv"
         app:layout_constraintStart_toEndOf="@+id/installment_date_tv" />
 
@@ -164,6 +179,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Total Balance: $0"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

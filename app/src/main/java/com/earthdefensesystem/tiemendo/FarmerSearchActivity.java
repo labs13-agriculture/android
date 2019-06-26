@@ -68,7 +68,6 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
         newFarmerBtn = findViewById(R.id.farmer_fab);
 
 
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.farmer_toolbar_title);
@@ -166,12 +165,12 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
         startActivity(intent);
     }
 
-    public void sendFarmer(String accessToken, Client client){
+    public void sendFarmer(String accessToken, Client client) {
         service.addFarmer("Bearer " + accessToken, client).enqueue(new Callback<Client>() {
             @Override
             public void onResponse(Call<Client> call, Response<Client> response) {
 
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     Log.e(TAG, "post submitted to API." + response.body().toString());
                     farmerPopup.dismiss();
                 } else {
@@ -187,33 +186,33 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
     }
 
 
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_farmer, menu);
-//
-//
-//        // Associate searchable configuration with the SearchView
-//        searchView = (SearchView) menu.findItem(R.id.farmer_search).getActionView();
-//
-//        // listening to search query text change
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                // filter recycler view when query submitted
-//                adapter.getFilter().filter(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String query) {
-//                // filter recycler view when text is changed
-//                adapter.getFilter().filter(query);
-//                return true;
-//            }
-//        });
-//        return true;
-//    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_farmer, menu);
+
+
+        // Associate searchable configuration with the SearchView
+        searchView = (SearchView) menu.findItem(R.id.farmer_search).getActionView();
+
+        // listening to search query text change
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // filter recycler view when query submitted
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                // filter recycler view when text is changed
+                adapter.getFilter().filter(query);
+                return true;
+            }
+        });
+        return true;
+    }
 
 
     @Override

@@ -55,10 +55,10 @@ public interface TiemeService {
                                     @Header("Authorization") String accessToken);
 
     @POST("/retailer/new")
-    Call<Client> addRetailer(@Header("Authorization: Bearer ") String accessToken);
+    Call<Client> addRetailer(@Header("Authorization") String accessToken);
 
     @GET("/retailer/retailers")
-    Call<List<Client>> getRetailers(@Header("Authorization: Bearer ") String accessToken);
+    Call<List<Client>> getRetailers(@Header("Authorization") String accessToken);
 
     @GET("/retailer/{id}")
     Call<Client> getRetailerWithId(@Path("id") String id,

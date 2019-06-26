@@ -16,11 +16,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Add Payment"
+        android:text="@string/add_payment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/farmer_address_edittext" />
+        app:layout_constraintTop_toBottomOf="@+id/farmer_payment_amount_edittext"
+        app:layout_constraintVertical_bias="0.982" />
 
     <EditText
         android:id="@+id/farmer_payment_amount_edittext"
@@ -30,7 +32,7 @@
         android:layout_marginTop="168dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Payment Date"
+        android:hint="@string/payment_date"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,11 +46,10 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Payment Amount"
-        android:inputType="text"
+        android:hint="@string/payment_amount"
+        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/farmer_name_edittext" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </android.support.constraint.ConstraintLayout>

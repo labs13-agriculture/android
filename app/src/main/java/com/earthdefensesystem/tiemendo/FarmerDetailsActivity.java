@@ -63,11 +63,11 @@ public class FarmerDetailsActivity extends AppCompatActivity {
         farmerName = findViewById(R.id.farmer_detail_name);
         farmerEmail = findViewById(R.id.farmer_detail_email);
         paymentAmount = findViewById(R.id.farmer_payment_amount_edittext);
-        paymentDate =findViewById(R.id.farmer_payment_date_edittext);
+        paymentDate = findViewById(R.id.farmer_payment_date_edittext);
         context = this;
 
         Intent intent = getIntent();
-        final Client farmer = (Client)intent.getSerializableExtra("farmerObject");
+        final Client farmer = (Client) intent.getSerializableExtra("farmerObject");
 
 
         service = RetrofitClientInstance.getRetrofitInstance().create(TiemeService.class);
@@ -85,11 +85,11 @@ public class FarmerDetailsActivity extends AppCompatActivity {
         transactionCall.enqueue(new Callback<List<Transaction>>() {
             @Override
             public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     generateTransactionList(response.body());
                     transactionList = response.body();
-                }else{
-                    Log.e(TAG,"Auggh!"+ response.code());
+                } else {
+                    Log.e(TAG, "Auggh!" + response.code());
                 }
             }
 
@@ -102,15 +102,15 @@ public class FarmerDetailsActivity extends AppCompatActivity {
             }
         });
 
-        Call<List<Installment>> installmentCall = service.getInstallmentbyClientId(farmerId, "Bearer "+ accessToken);
+        Call<List<Installment>> installmentCall = service.getInstallmentbyClientId(farmerId, "Bearer " + accessToken);
         installmentCall.enqueue(new Callback<List<Installment>>() {
             @Override
             public void onResponse(Call<List<Installment>> call, Response<List<Installment>> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     generateInstallmentList(response.body());
                     installmentList = response.body();
 
-                } else{
+                } else {
                     Log.e(TAG, "Hoo Boy" + response.body());
                 }
             }
@@ -123,66 +123,6 @@ public class FarmerDetailsActivity extends AppCompatActivity {
                 toast.show();
             }
         });
-
-
-
-
-
-
-//        List<Installment> farmerInstallments = farmer.getDateofbirth();
-//
-//
-//        for (int i = 0; i <farmerInstallments.size(); i++){
-//            TextView tv = new TextView(context);
-//            final Installment getInstallment = farmerInstallments.get(i);
-//            tv.setText(getInstallment.getDatepaid() + "  " + getInstallment.getAmountpaid());
-//            tv.setTextSize(18);
-//            linearLayout.addView(tv);
-
-//        }
-
-//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                LayoutInflater layoutInflater = (LayoutInflater) FarmerDetailsActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.farmer_detail_popup,null);
-//                detailsWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//                detailsWindow.showAtLocation(linearLayout, Gravity.CENTER, 0, 0);
-//                detailsWindow.setFocusable(true);
-//                detailsWindow.update();
-//
-//                final String paymentDateStr = paymentAmount.getText().toString();
-//                final String paymentAmountStr = paymentDate.getText().toString();
-//
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                        JSONObject installmentJson = new JSONObject();
-//                        JSONObject farmerJson = new JSONObject();
-//                        try{
-//                            installmentJson.put("amountPaid", paymentAmountStr);
-//                            installmentJson.put("datePaid", paymentDateStr);
-//
-//                            farmerJson.put("installments", farmerJson);
-//                        } catch (JSONException e) {
-//                        }
-//                        SharedPreferences sharedPreferences = getSharedPreferences("mysettings", MODE_PRIVATE);
-//                        String accessToken = sharedPreferences.getString("mystring", "N/A");
-//
-//                        Map<String, String> headerProperties = new HashMap<>();
-//                        headerProperties.put("Authorization", "Bearer " + accessToken);
-//
-//                        try {
-//                            NetworkAdapter.httpRequest("https://tieme-ndo-backend.herokuapp.com/new-installment/1","POST", farmerJson, headerProperties);
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }).start();
-//                detailsWindow.dismiss();
-//            }
-//        });
     }
 
     private void generateTransactionList(List<Transaction> transactionsDataList) {
@@ -197,6 +137,7 @@ public class FarmerDetailsActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(tAdapter);
     }
+
     private void generateInstallmentList(List<Installment> installmentsDataList) {
         recyclerView = findViewById(R.id.farmer_installment_recyclerview);
         recyclerView.setHasFixedSize(true);

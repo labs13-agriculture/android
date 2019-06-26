@@ -5,37 +5,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/email_textview"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:layout_marginEnd="24dp"
-        android:text="Username"
-        android:textSize="26sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/email_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/email_edittext" />
+        android:text="@string/username"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/email_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/email_edittext" />
 
     <TextView
         android:id="@+id/password_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Password"
-        android:textSize="26sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/password_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/password_edittext" />
+        android:textColor="@color/white"
+        android:text="@string/password"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/password_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/password_edittext" />
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/scroll_view_inventory"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="132dp"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="@+id/password_edittext"
         app:layout_constraintTop_toBottomOf="@+id/password_edittext" />
 
@@ -43,7 +45,8 @@
         android:id="@+id/password_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="72dp"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/email_edittext"
@@ -54,31 +57,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="256dp"
         android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.813"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scroll_view_inventory"
-        android:layout_width="413dp"
-        android:layout_height="283dp"
+    <TextView
+        android:id="@+id/tieme_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/tieme_endo"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/linear_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tiemeNdo" />
 
 </android.support.constraint.ConstraintLayout>
