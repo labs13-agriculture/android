@@ -11,12 +11,12 @@
         android:id="@+id/retailers_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="136dp"
         android:text="@string/retailers"
+        android:textColor="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,9 +26,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="@string/farmers"
+        android:textColor="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/retailer_search_btn"
         app:layout_constraintTop_toBottomOf="@+id/retailer_search_btn" />
 
@@ -38,9 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="@string/organizations"
+        android:textColor="@color/light_gray"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/farmer_search_btn"
         app:layout_constraintTop_toBottomOf="@+id/farmer_search_btn" />
 
@@ -78,6 +78,80 @@
         android:textStyle="bold"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="@+id/organizations_tv"
+        app:layout_constraintTop_toBottomOf="@+id/organizations_tv" />
+
+    <View
+        android:id="@+id/view"
+        style="@style/Divider"
+        android:layout_width="250dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.413"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/farmers_tv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/view2"
+        style="@style/Divider"
+        android:layout_width="250dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.413"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/organizations_tv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        style="@style/Divider"
+        android:layout_width="250dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.413"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/retailers_tv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/retailer_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="Add"
+        app:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/retailer_search_btn"
+        app:layout_constraintTop_toBottomOf="@+id/retailers_tv" />
+
+    <Button
+        android:id="@+id/farmer_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Add"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/farmer_search_btn"
+        app:layout_constraintTop_toBottomOf="@+id/farmers_tv" />
+
+    <Button
+        android:id="@+id/orginzation_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Add"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/organizaiton_search_btn"
         app:layout_constraintTop_toBottomOf="@+id/organizations_tv" />
 
 </android.support.constraint.ConstraintLayout>

@@ -34,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "Golly";
 
-    LinearLayout linearView;
-    ScrollView scrollView;
     Context context;
     Button loginButton;
     EditText emailText, passwordText;
@@ -50,8 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         emailText = findViewById(R.id.email_edittext);
         passwordText = findViewById(R.id.password_edittext);
 
-        linearView = findViewById(R.id.linear_view);
-        scrollView = findViewById(R.id.scroll_view_inventory);
         context = this;
 
         loginButton.setOnClickListener(new View.OnClickListener() {

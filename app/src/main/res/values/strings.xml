@@ -12,11 +12,10 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
-    <string name="tieme_endo">Tieme Endo</string>
+    <string name="tieme_endo">Tieme Ndo</string>
     <string name="loading">Loading</string>
     <string name="transactions">Transactions</string>
     <string name="amount">Amount</string>
-    <string name="mode">Mode</string>
     <string name="date">Date</string>
     <string name="officer">Officer</string>
     <string name="installments">Installments</string>
