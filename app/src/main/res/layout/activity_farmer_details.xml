@@ -28,12 +28,12 @@
         android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="288dp"
         android:text="@string/loading"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/farmer_detail_name" />
 
@@ -145,7 +145,7 @@
         android:id="@+id/installment_mode_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="16dp"
         android:text="@string/mode"
         android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/amount_paid_tv"
@@ -155,7 +155,7 @@
         android:id="@+id/installment_date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="32dp"
         android:text="@string/date"
         android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/installment_mode_tv"
@@ -185,22 +185,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="128dp"
+    <Button
+        android:id="@+id/installment_add_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:background="@drawable/add_icon"
+        app:layout_constraintBaseline_toBaselineOf="@+id/installment_officer_tv"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
+    <Button
+        android:id="@+id/transaction_add_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/date_details_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:background="@drawable/add_icon"
+        app:layout_constraintBaseline_toBaselineOf="@+id/officer_details_tv"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

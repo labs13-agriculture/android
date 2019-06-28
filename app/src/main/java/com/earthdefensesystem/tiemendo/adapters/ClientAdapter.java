@@ -1,12 +1,15 @@
 package com.earthdefensesystem.tiemendo.adapters;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.earthdefensesystem.tiemendo.R;
@@ -37,7 +40,10 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     @Override
     public void onBindViewHolder(@NonNull ClientViewHolder holder, int i) {
-        holder.farmerName.setText(dataList.get(i).getFirstName());
+
+        String fullName = filteredDataList.get(i).getFirstName()+ " " + filteredDataList.get(i).getSecondName();
+        holder.farmerName.setText(fullName);
+        holder.farmerEmail.setText(filteredDataList.get(i).getEmail());
 
 
     }
@@ -58,11 +64,13 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
                     List<Client> filteredList = new ArrayList<>();
 
-                    for (Client androidVersion : dataList) {
+                    for (Client client : dataList) {
 
-                        if (androidVersion.getFirstName().toLowerCase().contains(charString)) {
+                        if (client.getFirstName().toLowerCase().contains(charString)||
+                                client.getSecondName().toLowerCase().contains(charString) ||
+                                client.getEmail().toLowerCase().contains(charString)) {
 
-                            filteredList.add(androidVersion);
+                            filteredList.add(client);
                         }
                     }
 
@@ -84,15 +92,18 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return filteredDataList.size();
     }
 
     class ClientViewHolder extends RecyclerView.ViewHolder {
-        TextView farmerName;
+        TextView farmerName, farmerEmail;
+        RelativeLayout containerLayout;
 
         ClientViewHolder(View itemView) {
             super(itemView);
             farmerName = itemView.findViewById(R.id.farmer_name);
+            farmerEmail = itemView.findViewById(R.id.farmer_email);
+            containerLayout = itemView.findViewById(R.id.cv_farmer_layout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

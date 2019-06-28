@@ -32,8 +32,8 @@
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="148dp"
         android:text="@string/login"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/email_edittext"
@@ -59,6 +60,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="256dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/white"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textEmailAddress"
@@ -90,6 +92,6 @@
         android:layout_marginEnd="76dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tiemeNdo" />
+        app:srcCompat="@drawable/tiemendo" />
 
 </android.support.constraint.ConstraintLayout>

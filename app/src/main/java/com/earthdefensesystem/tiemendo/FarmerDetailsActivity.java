@@ -42,7 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FarmerDetailsActivity extends AppCompatActivity {
-    private TextView farmerName, farmerEmail;
+    private TextView farmerName, farmerEmail, farmerBalance;
     private RecyclerView recyclerView;
     private List<Transaction> transactionList;
     private List<Installment> installmentList;
@@ -64,6 +64,7 @@ public class FarmerDetailsActivity extends AppCompatActivity {
         farmerEmail = findViewById(R.id.farmer_detail_email);
         paymentAmount = findViewById(R.id.farmer_payment_amount_edittext);
         paymentDate = findViewById(R.id.farmer_payment_date_edittext);
+        farmerBalance = findViewById(R.id.farmer_balance_tv);
         context = this;
 
         Intent intent = getIntent();
@@ -75,8 +76,8 @@ public class FarmerDetailsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("mysettings", MODE_PRIVATE);
         final String accessToken = sharedPreferences.getString("mystring", "N/A");
 
-        farmerName.setText(farmer.getFirstName());
-        farmerEmail.setText(farmer.getAddress());
+        farmerName.setText(farmer.getFirstName()+farmer.getSecondName());
+        farmerEmail.setText(farmer.getEmail());
 
         String farmerId = farmer.getId().toString();
         Log.e(TAG, farmerId);
@@ -150,4 +151,6 @@ public class FarmerDetailsActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(iAdapter);
     }
+
+
 }

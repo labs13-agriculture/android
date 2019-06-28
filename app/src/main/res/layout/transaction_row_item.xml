@@ -4,6 +4,7 @@
     android:id="@+id/card_view_transaction"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorPrimaryDark"
     card_view:cardUseCompatPadding="true"
     >
 
@@ -20,6 +21,7 @@
             android:layout_marginLeft="16dp"
             android:lines="2"
             android:paddingTop="20dp"
+            android:textColor="@color/white"
             android:text="10.02" />
 
         <TextView
@@ -31,6 +33,7 @@
             android:layout_toEndOf="@+id/amount_tv"
             android:lines="2"
             android:paddingTop="20dp"
+            android:textColor="@color/white"
             android:text="CREDIT" />
 
         <TextView
@@ -42,6 +45,7 @@
             android:paddingTop="20dp"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_toEndOf="@+id/mode_tv"
+            android:textColor="@color/white"
             android:text="2019-06-21" />
 
         <TextView
@@ -53,16 +57,8 @@
             android:paddingTop="20dp"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_toEndOf="@+id/date_tv"
+            android:textColor="@color/white"
             android:text="Joshua" />
-
-        <ImageButton
-            android:id="@+id/delete_transaction_button"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_toEndOf="@+id/officer_tv"
-            card_view:srcCompat="@android:drawable/presence_offline" />
 
     </RelativeLayout>
 
