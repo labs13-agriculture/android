@@ -60,7 +60,6 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
         context = this;
 
         Toolbar toolbar = findViewById(R.id.farmer_toolbar);
-        newFarmerBtn = findViewById(R.id.farmer_fab);
 
 
         setSupportActionBar(toolbar);
@@ -83,60 +82,60 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
             @Override
             public void onFailure(Call<List<Client>> call, Throwable t) {
                 Toast toast = Toast.makeText(
-                        context, "Username or Password is incorrect",
+                        context, t.getMessage()+ t.getCause(),
                         Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
 
-
-               newFarmerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LayoutInflater layoutInflater = (LayoutInflater) FarmerSearchActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.farmer_popup, null);
-                farmerPopup = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                farmerPopup.showAtLocation(recyclerView, Gravity.CENTER, 0, 0);
-                farmerPopup.setFocusable(true);
-                farmerPopup.update();
-
-                spinYear = customView.findViewById(R.id.year_start_spinner);
-                ArrayList<String> years = new ArrayList<>();
-                int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-                for (int i = 1900; i <= thisYear; i++) {
-                    years.add(Integer.toString(i));
-                }
-                final ArrayAdapter<String> spinneradapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, years);
-                spinYear.setAdapter(spinneradapter);
-
-                saveFarmerBtn = customView.findViewById(R.id.closePopupBtn);
-                farmerName = customView.findViewById(R.id.farmer_name_edittext);
-                farmerEmail = customView.findViewById(R.id.farmer_email_edittext);
-                farmerPhone = customView.findViewById(R.id.farmer_phone_edittext);
-                farmerAddress = customView.findViewById(R.id.farmer_address_edittext);
-
-                farmerPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-
-                saveFarmerBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final String email = farmerEmail.getText().toString();
-                        final String name = farmerName.getText().toString();
-                        final String address = farmerAddress.getText().toString();
-                        final String phoneNumber = farmerPhone.getText().toString();
-                        Client postClient = new Client(address, "community",
-                                "dateofbirth", "district", "educationlevel",
-                                email, name, "gender", null, "landmark", true, "nationality",
-                                phoneNumber, "region", "region", "secondName", 2343, "title", "FARMER");
-
-                        sendFarmer(accessToken, postClient);
-                    }
-                });
-
-
-            }
-        });
-
+//
+//               newFarmerBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                LayoutInflater layoutInflater = (LayoutInflater) FarmerSearchActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.farmer_popup, null);
+//                farmerPopup = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                farmerPopup.showAtLocation(recyclerView, Gravity.CENTER, 0, 0);
+//                farmerPopup.setFocusable(true);
+//                farmerPopup.update();
+//
+//                spinYear = customView.findViewById(R.id.year_start_spinner);
+//                ArrayList<String> years = new ArrayList<>();
+//                int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+//                for (int i = 1900; i <= thisYear; i++) {
+//                    years.add(Integer.toString(i));
+//                }
+//                final ArrayAdapter<String> spinneradapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, years);
+//                spinYear.setAdapter(spinneradapter);
+//
+//                saveFarmerBtn = customView.findViewById(R.id.closePopupBtn);
+//                farmerName = customView.findViewById(R.id.farmer_first_name_edittext);
+//                farmerEmail = customView.findViewById(R.id.farmer_email_edittext);
+//                farmerPhone = customView.findViewById(R.id.farmer_phone_edittext);
+//                farmerAddress = customView.findViewById(R.id.farmer_address_edittext);
+//
+//                farmerPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+//
+//                saveFarmerBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        final String email = farmerEmail.getText().toString();
+//                        final String name = farmerName.getText().toString();
+//                        final String address = farmerAddress.getText().toString();
+//                        final String phoneNumber = farmerPhone.getText().toString();
+//                        Client postClient = new Client(address, "community",
+//                                "dateofbirth", "district", "educationlevel",
+//                                email, name, "gender", null, "landmark", true, "nationality",
+//                                phoneNumber, "region", "region", "secondName", 2343, "title", "FARMER", null);
+//
+//                        sendFarmer(accessToken, postClient);
+//                    }
+//                });
+//
+//
+//            }
+//        });
+//
 
     }
 
@@ -155,7 +154,8 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
 
     @Override
     public void onClientSelected(Client farmer) {
-        Intent intent = new Intent(FarmerSearchActivity.this, FarmerDetailsActivity.class);
+//        Intent intent = new Intent(FarmerSearchActivity.this, FarmerDetailsActivity.class);
+        Intent intent = new Intent(FarmerSearchActivity.this, ClientDetailsActivity.class);
         intent.putExtra("farmerObject", farmer);
         startActivity(intent);
     }
@@ -237,6 +237,6 @@ public class FarmerSearchActivity extends AppCompatActivity implements ClientAda
         }
         super.onBackPressed();
     }
-    
+
 
 }

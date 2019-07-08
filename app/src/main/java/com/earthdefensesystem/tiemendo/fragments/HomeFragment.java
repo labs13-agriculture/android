@@ -1,6 +1,5 @@
 package com.earthdefensesystem.tiemendo.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,9 +18,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
-import com.earthdefensesystem.tiemendo.DashboardActivity;
 import com.earthdefensesystem.tiemendo.FarmerSearchActivity;
-import com.earthdefensesystem.tiemendo.LoginActivity;
 import com.earthdefensesystem.tiemendo.OrganizationSearchActivity;
 import com.earthdefensesystem.tiemendo.R;
 import com.earthdefensesystem.tiemendo.RetailerSearchActivity;
@@ -47,7 +44,7 @@ public class HomeFragment extends Fragment {
     private Button btnOrganizationSearch;
     private Button btnFarmerAdd;
     private Button saveFarmerBtn;
-    private EditText farmerName, farmerEmail, farmerPhone, farmerAddress;
+    private EditText farmerFirstName,farmerSecondName, farmerEmail, farmerPhone, farmerAddress;
     private TiemeService service;
     private PopupWindow farmerPopup;
     private Spinner spinYear;
@@ -108,7 +105,8 @@ public class HomeFragment extends Fragment {
                 spinYear.setAdapter(spinneradapter);
 
                 saveFarmerBtn = customView.findViewById(R.id.closePopupBtn);
-                farmerName = customView.findViewById(R.id.farmer_name_edittext);
+                farmerFirstName = customView.findViewById(R.id.farmer_first_name_edittext);
+                farmerSecondName = customView.findViewById(R.id.farmer_second_name_edittexr);
                 farmerEmail = customView.findViewById(R.id.farmer_email_edittext);
                 farmerPhone = customView.findViewById(R.id.farmer_phone_edittext);
                 farmerAddress = customView.findViewById(R.id.farmer_address_edittext);
@@ -119,13 +117,14 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         final String email = farmerEmail.getText().toString();
-                        final String name = farmerName.getText().toString();
+                        final String firstname = farmerFirstName.getText().toString();
+                        final String secondname = farmerSecondName.getText().toString();
                         final String address = farmerAddress.getText().toString();
                         final String phoneNumber = farmerPhone.getText().toString();
                         Client postClient = new Client(address, "community",
                                 "dateofbirth", "district", "educationlevel",
-                                email, name, "gender", null, "landmark", true, "nationality",
-                                phoneNumber, "region", "region", "secondName", 1994, "title", "FARMER");
+                                email, firstname, "gender", null, "landmark", true, "nationality",
+                                phoneNumber, "region", "region", secondname, 1994, "title", "FARMER", null);
 
                         sendFarmer(accessToken, postClient);
                     }

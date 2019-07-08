@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/inventory_tv"
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:textColor="@color/light_gray"
         android:text="Inventory"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -25,6 +27,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="50dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -36,7 +39,8 @@
         android:id="@+id/inventory_item_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/light_gray"
         android:text="Item Name"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/inventory_item_quantity_tv"
@@ -46,7 +50,8 @@
         android:id="@+id/inventory_item_quantity_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="64dp"
+        android:textColor="@color/light_gray"
         android:text="Quantity"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/inventory_active_tv"
@@ -58,18 +63,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="8dp"
+        android:textColor="@color/light_gray"
         android:text="Active"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/inventory_recyclerView"
         app:layout_constraintStart_toEndOf="@+id/inventory_item_quantity_tv" />
 
-    <ImageButton
+    <Button
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/add_icon"
         app:layout_constraintBottom_toBottomOf="@+id/inventory_active_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

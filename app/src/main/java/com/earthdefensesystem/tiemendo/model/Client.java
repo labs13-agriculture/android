@@ -63,11 +63,16 @@ public class Client implements Serializable {
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("totalOwed")
+    @Expose
+    private Double totalowed;
+
 
     public Client(String address, String community, String dateofbirth, String district,
                   String educationlevel, String email, String firstName, String gender, Integer id,
                   String landmark, Boolean lead, String nationality, String phone, String position,
-                  String region, String secondName, Integer startyear, String title, String type) {
+                  String region, String secondName, Integer startyear, String title, String type,
+                  Double totalowed) {
         this.address = address;
         this.community = community;
         this.dateofbirth = dateofbirth;
@@ -87,6 +92,7 @@ public class Client implements Serializable {
         this.startyear = startyear;
         this.title = title;
         this.type = type;
+        this.totalowed = totalowed;
     }
 
     public String getAddress() {
@@ -241,4 +247,11 @@ public class Client implements Serializable {
         this.type = type;
     }
 
+    public Double getTotalowed() {
+        return totalowed;
+    }
+
+    public void setTotalowed(Double totalowed) {
+        this.totalowed = totalowed;
+    }
 }

@@ -3,39 +3,26 @@ package com.earthdefensesystem.tiemendo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.earthdefensesystem.tiemendo.adapters.ClientAdapter;
 import com.earthdefensesystem.tiemendo.adapters.InstallmentAdapter;
 import com.earthdefensesystem.tiemendo.adapters.TransactionAdapter;
+import com.earthdefensesystem.tiemendo.fragments.TransactionFragment;
 import com.earthdefensesystem.tiemendo.model.Client;
 import com.earthdefensesystem.tiemendo.model.Installment;
 import com.earthdefensesystem.tiemendo.model.Transaction;
-import com.earthdefensesystem.tiemendo.network.NetworkAdapter;
 import com.earthdefensesystem.tiemendo.network.RetrofitClientInstance;
 import com.earthdefensesystem.tiemendo.network.TiemeService;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -67,6 +54,7 @@ public class FarmerDetailsActivity extends AppCompatActivity {
         farmerBalance = findViewById(R.id.farmer_balance_tv);
         context = this;
 
+
         Intent intent = getIntent();
         final Client farmer = (Client) intent.getSerializableExtra("farmerObject");
 
@@ -80,6 +68,13 @@ public class FarmerDetailsActivity extends AppCompatActivity {
         farmerEmail.setText(farmer.getEmail());
 
         String farmerId = farmer.getId().toString();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("farmerId", farmerId);
+
+        TransactionFragment fragobj = new TransactionFragment();
+        fragobj.setArguments(bundle);
+
         Log.e(TAG, farmerId);
 
         Call<List<Transaction>> transactionCall = service.getTransactionById(farmerId, "Bearer " + accessToken);

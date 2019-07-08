@@ -2,6 +2,7 @@ package com.earthdefensesystem.tiemendo.adapters;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
         String fullName = filteredDataList.get(i).getFirstName()+ " " + filteredDataList.get(i).getSecondName();
         holder.farmerName.setText(fullName);
         holder.farmerEmail.setText(filteredDataList.get(i).getEmail());
+        holder.farmerInitial.setText(String.valueOf(fullName.charAt(0)));
 
 
     }
@@ -96,12 +98,13 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
     }
 
     class ClientViewHolder extends RecyclerView.ViewHolder {
-        TextView farmerName, farmerEmail;
-        RelativeLayout containerLayout;
+        TextView farmerName, farmerEmail, farmerInitial;
+        ConstraintLayout containerLayout;
 
         ClientViewHolder(View itemView) {
             super(itemView);
             farmerName = itemView.findViewById(R.id.farmer_name);
+            farmerInitial = itemView.findViewById(R.id.farmer_circle_tv);
             farmerEmail = itemView.findViewById(R.id.farmer_email);
             containerLayout = itemView.findViewById(R.id.cv_farmer_layout);
 

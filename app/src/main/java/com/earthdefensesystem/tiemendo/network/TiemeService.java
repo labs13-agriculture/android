@@ -92,6 +92,10 @@ public interface TiemeService {
     @GET("/itemtype/all")
     Call<List<ItemType>> getItemTypes(@Header("Authorization") String accessToken);
 
+    @DELETE("/itemtype/delete/{itemtypeid}")
+    Call<ItemType> deleteItemType(@Path ("itemtypeid") String id,
+                                   @Header("Authorization") String accessToken);
+
     @PUT("/itemtype/update/{itemtypeid}")
     Call<ItemType> updateItemType(@Header("Authorization: Bearer ") String accessToken,
                                   @Path("itemtypeid") String id);

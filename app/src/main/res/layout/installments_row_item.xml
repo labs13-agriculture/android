@@ -5,7 +5,7 @@
     android:id="@+id/card_view_installments"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/colorPrimaryDark"
+    android:backgroundTint="@color/light_gray"
     card_view:cardUseCompatPadding="true"
     >
 
@@ -19,66 +19,54 @@
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
             android:lines="2"
             android:paddingTop="20dp"
             android:text="10.02"
-            android:textColor="@color/white"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.0" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/installment_mode_tv"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="84dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="76dp"
+            android:layout_toEndOf="@+id/installment_amount_tv"
             android:lines="2"
             android:paddingTop="20dp"
             android:text="CREDIT"
-            android:textColor="@color/white"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.0" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/installment_date_tv"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="156dp"
-            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@+id/installment_mode_tv"
             android:lines="2"
             android:paddingTop="20dp"
             android:text="2019-06-21"
-            android:textColor="@color/white"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.0" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/installment_officer_tv"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="264dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/installment_date_tv"
             android:lines="2"
             android:paddingTop="20dp"
             android:text="Joshua"
-            android:textColor="@color/white"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/installment_date_tv"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.0" />
 

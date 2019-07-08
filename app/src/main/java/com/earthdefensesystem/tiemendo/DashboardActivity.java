@@ -51,10 +51,6 @@ public class DashboardActivity extends AppCompatActivity
                 fragment = new HomeFragment();
                 break;
 
-            case R.id.navigation_dashboard:
-                fragment = new AccountFragment();
-                break;
-
             case R.id.navigation_inventory:
                 fragment = new InventoryFragment();
                 break;

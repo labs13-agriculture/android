@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/installment_tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/installment_tab_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/installment_tab_tv"></android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/installment_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/amount"
+        android:textColor="@color/light_gray"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/installment_tab_rv"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/installment_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/mode"
+        android:textColor="@color/light_gray"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/installment_amount"
+        app:layout_constraintStart_toEndOf="@+id/installment_amount" />
+
+    <TextView
+        android:id="@+id/installment_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:text="@string/date"
+        android:textColor="@color/light_gray"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/installment_mode"
+        app:layout_constraintStart_toEndOf="@+id/installment_mode" />
+
+    <TextView
+        android:id="@+id/installment_officer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:text="@string/officer"
+        android:textColor="@color/light_gray"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/installment_date"
+        app:layout_constraintStart_toEndOf="@+id/installment_date" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/installment_add_btn"
+        android:layout_width="49dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/colorPrimary"
+        android:text="New"
+        android:textColor="@color/light_gray"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/installment_tab_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/installments"
+        android:textColor="@color/light_gray"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/client_detail_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="168dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="6dp"
+        android:minHeight="60dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/client_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="216dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/client_detail_tab_layout"
+        app:layout_constraintVertical_bias="1.0">
+
+    </android.support.v4.view.ViewPager>
+
+    <ImageView
+        android:id="@+id/client_email_btn"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/colorPrimary"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/client_detail_tab_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_email_teal_24dp" />
+
+    <ImageView
+        android:id="@+id/client_call_btn"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/colorPrimary"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/client_detail_tab_layout"
+        app:layout_constraintStart_toEndOf="@+id/client_email_btn"
+        app:srcCompat="@drawable/ic_phone_teal_24dp" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="228dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/client_detail_tab_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/client_call_btn" />
+
+    <TextView
+        android:id="@+id/total_balance_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Total Balance:"
+        android:textColor="@color/light_gray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
+
+    <TextView
+        android:id="@+id/dashboard_balance_amount_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="$100"
+        android:textColor="@color/light_gray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintStart_toEndOf="@+id/total_balance_tv"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
+
+    <TextView
+        android:id="@+id/dashboard_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="John Smith"
+        android:textColor="@color/light_gray"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_address_tv"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dashboard_address_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="Address"
+        android:textColor="@color/light_gray"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/client_email_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/dashboard_profile_pic_tv"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/circle_light"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="G"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

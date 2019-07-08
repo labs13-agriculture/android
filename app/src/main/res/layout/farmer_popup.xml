@@ -5,10 +5,10 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:background="#AAA"
+    android:background="@color/light_gray"
     android:padding="10px">
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/closePopupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,138 +16,197 @@
         android:layout_marginTop="192dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
         android:text="@string/save_farmer"
+        android:textColor="@color/light_gray"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/year_start_spinner" />
 
     <EditText
-        android:id="@+id/farmer_name_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/farmer_first_name_edittext"
+        android:layout_width="178dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/farmer_email_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/farmer_name_edittext" />
+        app:layout_constraintTop_toBottomOf="@+id/farmer_first_name_edittext" />
 
     <EditText
         android:id="@+id/farmer_phone_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/farmer_email_edittext" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/farmer_email_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/farmer_address_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/farmer_phone_edittext" />
+        app:layout_constraintTop_toBottomOf="@+id/farmer_email_edittext" />
 
     <TextView
         android:id="@+id/name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Name"
+        android:layout_marginStart="84dp"
+        android:text="First Name"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/farmer_name_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/farmer_name_edittext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/farmer_first_name_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/farmer_first_name_edittext" />
 
     <TextView
         android:id="@+id/email_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="120dp"
         android:text="E-Mail"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/farmer_email_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/farmer_email_edittext"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/farmer_email_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/farmer_email_edittext" />
 
     <TextView
         android:id="@+id/phone_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Phone #"
+        android:layout_marginStart="124dp"
+        android:text="Phone"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/farmer_phone_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/farmer_phone_edittext"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/farmer_phone_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/farmer_phone_edittext" />
 
     <TextView
         android:id="@+id/address_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="108dp"
         android:text="Address"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/farmer_address_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/farmer_address_edittext"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/farmer_address_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/farmer_address_edittext" />
 
     <TextView
         android:id="@+id/year_start_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
         android:text="Year Started"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/year_start_spinner"
-        app:layout_constraintTop_toBottomOf="@+id/address_tv" />
+        app:layout_constraintStart_toEndOf="@+id/farmer_address_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/farmer_phone_edittext" />
 
     <Spinner
         android:id="@+id/year_start_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="124dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/year_start_tv"
+        app:layout_constraintTop_toBottomOf="@+id/phone_tv" />
+
+    <EditText
+        android:id="@+id/farmer_second_name_edittexr"
+        android:layout_width="178dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/farmer_first_name_edittext"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="Second Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/farmer_second_name_edittexr"
+        app:layout_constraintTop_toBottomOf="@+id/farmer_second_name_edittexr" />
+
+    <EditText
+        android:id="@+id/farmer_title_edittext"
+        android:layout_width="178dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_tv" />
+
+    <EditText
+        android:id="@+id/farmer_position_dp"
+        android:layout_width="178dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/farmer_title_edittext"
         app:layout_constraintTop_toBottomOf="@+id/farmer_address_edittext" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:text="Title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/farmer_title_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/farmer_title_edittext" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:text="Position"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/farmer_position_dp"
+        app:layout_constraintTop_toBottomOf="@+id/farmer_position_dp" />
 
 </android.support.constraint.ConstraintLayout>

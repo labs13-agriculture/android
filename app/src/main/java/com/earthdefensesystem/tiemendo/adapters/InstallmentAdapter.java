@@ -36,7 +36,7 @@ public class InstallmentAdapter extends RecyclerView.Adapter<InstallmentAdapter.
         holder.amount.setText(format.format(dataList.get(i).getAmountPaid()));
         holder.mode.setText(dataList.get(i).getMode());
         holder.date.setText(truncate(dataList.get(i).getDatePaid(), 10));
-        holder.officer.setText(truncateElipsis(dataList.get(i).getOfficer(), 12));
+        holder.officer.setText(truncateElipsis(dataList.get(i).getOfficer(), 9));
 
     }
 
