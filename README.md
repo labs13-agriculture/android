@@ -1,109 +1,259 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
+# API Documentation
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+#### Backend deployed at [tieme-ndo-backend](https://tieme-ndo-backend.herokuapp.com/) <br>
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Getting started
 
-# 1️⃣ Title of project goes here
+To get the server running locally:
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+- Clone this repo
+- Set up PostgreSQL database locally with name, username, and password "tiemendo" 
+- Alternatively, change name, username, and password values to your liking in applications.properties file
+- Local testing is currently configured using localhost port 4040
 
-## 4️⃣ Contributors
+### The Stack
+Java Rest Api Built with Spring Framework on a postgres database deployed to Heroku
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add or delete these place-holders as needed
+-    `Spring` allows for amazing customization and extensibility
+-    `Hibernate` makes for intuitive and easy access to our database and works so smoothly with spring
+-    `Postgresql` is an amazing relational database that can handle our extensive models and integrates great with Herok
+-    `Heroku` is such a great platform that effortless integrates with our spring application and maven build. and a smooth CI pipeline directly plugged into github
 
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+## Endpoints
 
-🚫 Optional examples of using badges with links for your tech stack, make sure to change these to fit your project
+All Endpoints that return lists take pageable query paramaters `page, size, & sort`
 
-[![Swift Version][swift-image]][swift-url]
-[![Build Status][travis-image]][travis-url]
-[![License][license-image]][license-url]
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EZSwiftExtensions.svg)](https://img.shields.io/cocoapods/v/LFAlertController.svg)  
-[![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+#### User Routes
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
+| Method | Endpoint                | Access Control      | Description                                        |
+| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
+| GET    | `/users/users`                | Admin               | Returns paginated list of all users                |
+| GET    | `/users/users/:userId`        | Admin               | Returns info for a single user.                    |
+| GET    | `/users/usertype`        | Admin               | Returns roles of current user.                    |
+| GET    | `/users/username/:username`        | Admin               | Returns a list of users with name starting with :username   |
+| POST   | `/users/newuser`              | Admin               | Creates a new user                                 |
+| PUT    | `/users/update-user/:userId`  | Admin               | Updates user with given id                         |
+| DELETE | `/users/users/:userId`        | Admin               | Deletes user with given id                         |
 
-## 🚫 Project Overview
+#### Farmer Routes - refers to client model with type "farmer"
+
+| Method | Endpoint                | Access Control | Description                                  |
+| ------ | ----------------------- | -------------- | -------------------------------------------- |
+| GET    | `/farmers/all`          | all users      | Returns a paginated list of all farmers      |
+| GET   | `/farmers/search`       | all users      | Returns paginated list of farmers with given criteria, takes query params `page, size, sort, name, location` |
+| GET    | `/farmers/farmer/{id}`  | all users      | Returns farmer object with given ID           |
+| POST   | `/farmers/add`  | all users      | Creates and returns a new farmer object |
+| PUT    | `/farmers/farmer/{id}`       | all users      | Modify and return updated farmer object with given id             |
+| DELETE | `/farmers/farmer/{id}`       | all users      | Delete a farmer with given id.                      |
+
+#### Organization Routes
+
+| Method | Endpoint                                     | Access Control | Description                                    |
+| ------ | -------------------------------------------- | -------------- | ---------------------------------------------- |
+| GET    | `/organizations/:orgId`                       | all users      | Returns the information for an organization.   |
+| GET    | `/organizations/organizations-list`         | all users      | Returns the information for all organizations. |
+| GET   | `/organizations/search`       | all users      | Returns paginated list of organizations with given criteria, takes query params `page, size, sort, name, location` |
+| PUT    | `/organizations/update-organization/:orgId` | all users      | Modify an existing organization.               |
+| POST   | `/organizations/new-organization`             | all users      | Creates a new organization.                    |
+| DELETE | `/organizations/:orgId`                       | all users      | Delete an organization.                        |
+|Branches|
+| GET    | `/organizations/contacts/:orgId`                | all users      | Returns a list of all branches for given organization|
+| POST   | `/organizations/branch/:orgId`             | all users      | Adds a new branch to given organization. |
+| PUT   | `/organizations/branch/:id`             | all users      | Updates branch with given :id   |
+| DELETE | `/organizations/contact/:contactId`         | all users      | Delete a branch.  |
+
+#### Installment Routes
+
+| Method | Endpoint                             | Access Control | Description                                   |
+| ------ | ------------------------------------ | -------------- | --------------------------------------------- |
+| GET    | `/installment/:installmentId`        | all users      | Returns the information for an installment.   |
+| GET    | `/installment/installment-list`      | all users      | Returns a list of all installments. |
+| PUT    | `/update-installment/:installmentId` | all users      | Modify an existing installment. Returns a list of all installments.   |
+| POST   | `/new-installment/:clientId`         | all users      | Creates a new installment. Returns a list of all installments. |
+| DELETE | `/installment/:installmentId`        | all users      | Delete an installment. Returns a list of all installments. |
+
+#### Retailer Routes - refers to client model with type "retailer"
+
+| Method | Endpoint                | Access Control | Description                                  |
+| ------ | ----------------------- | -------------- | -------------------------------------------- |
+| GET    | `/retailer/reatailers`  | all users  | Returns a list of all retailers |
+| GET    | `/retailer/search`  | all users  | Returns a list of all retailers matching search criteria |
+| GET    | `/retailer/{id}`  | all users | Returns the retailer with given {id} |
+| POST    | `/retailer/add`  | all users | Creates and Returns a new retailer based on given information |
+| PUT    | `/retailer/update/{id}` | all users | Returns and modifies an existing retailer. |
+| DELETE | `/retailer/delete/{id}` | all users | Deletes retailer with given id.                      |
+
+#### Item-Type Routes
+
+| Method | Endpoint                | Access Control | Description                                  |
+| ------ | ----------------------- | -------------- | -------------------------------------------- |
+| GET    | `/itemtype/all` | all users      | Returns A list of all Items sorted alphabetically |
+| POST    | `/itemtype/add` | all users      | Creates an ItemType with given information. Returns A list of all Items sorted alphabetically |
+| PUT    | `/itemtype/update/{itemtypeid}` | all users      | Modify an existing ItemType with id matching {itemtypeid}. Returns A list of all Items sorted alphabetically |
+| DELETE | `/itemtype/delete/{itemtypeid}` | all users      | Delete item type with id matching {itemtypeid}. Returns A list of all Items sorted alphabetically |
+
+#### Transaction Routes
+
+| Method | Endpoint                | Access Control | Description                                  |
+| ------ | ----------------------- | -------------- | -------------------------------------------- |
+| GET    | `/transaction/all` | all users | Returns a pageable list of all transaction |
+| GET    | `/transaction/{id}` | all users | Returns the transaction with given id |
+| GET    | `/transaction/client/{id}` | all users | Returns a list of transactions for client with given id |
+| POST   | `/transaction/add/{clientId}` | all users | Adds a new transaction to client with given id, Returns a list of transactions |
+| PUT    | `/transaction/update/{transactionId}` | all users | Modify an existing transaction. Returns a list of transactions  |
+| DELETE | `/transaction/delete/{transactionId}` | all users | Delete an existing transaction. Returns a list of transactions  |
 
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+# Data Model
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+#### CLIENT
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+---
 
-🚫 Replace lorem ipsum with a description of your project
+```
+{
+    id: long, // (generated value) maps directly to id of subclasses
+    type: string, // ["FARMER", "RETAILER"] 
+    startyear: long,
+    lead: boolean,
+    transactions: [transaction, ...],
+    installments: [installment, ...],
+    
+    // Client Contact and Demographic Info
+    title: string,
+    name: string,
+    gender: string,
+    nationality: string,
+    dateofbirth: string,
+    educationlevel: string,
+    position: string,
+    phone: string,
+    email: string,
+    
+    // Client location Info
+    address: string,
+    region: string,
+    district: string,
+    community: string,
+    landmark: string,
+}
+```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+#### ORGANIZATION
 
-## 2️⃣ Features
+---
 
--    Feature 1
--    Feature 2
--    Feature 3
--    Feature 4
--    Feature 5
+```
+{
+  id: long, // (generated value) relates directly to id of associated client
+  beneficiaries: int,
+  headquarters: string,
+  name: string,
+  lead: boolean,
+  organizationbranches: [organizationbranch, ...]
+}
+```
 
-## 2️⃣Authentication API here
+#### ORGANIZATIONBRANCH
 
-🚫Replace text below with a description of the API
+---
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+```
+{
+  id: long, // (generated value)
+  organization: organization,
+  
+  // Branch Location Info
+  address: string,
+  district: string,
+  landmark: string,
+  region: string,
+  
+  // Branch Contact Info
+  email: string,
+  name: string,
+  organization: Organization,
+  phone: string,
+  position: string
+}
+```
 
-## 2️⃣Payment API here
+#### INSTALLMENT
 
-🚫Replace text below with a description of the API
+---
 
-This is the way you take out your frustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+```
+{
+    id: long, // (generated value)
+    amountPaid: double,
+    datePaid: Date,
+    mode: string,
+    officer: string,
+    client: Client,
+}
+```
 
-## 3️⃣Misc API here
+#### TRANSACTION
 
-🚫Replace text below with a description of the API
+---
 
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+```
+{
+  id: long, (generated unique id)
+  type: string, // ["CASH", "CREDIT"]
+  date: date,
+  personnel: string,
+  inputs: [transactionItems, ...],
+  total: double, // total cost of transaction based on input price and qty
+  client: client
+}
+```
 
-## 3️⃣Misc API here
+#### TRANSACTIONITEM
 
-🚫Replace text below with a description of the API
+---
 
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
+```
+{
+  id: long, //(generated unique id)
+  quantity: int,
+  unitPrice: double,
+  item: itemType,
+  transaction: transaction
+}
+```
 
-## 3️⃣Misc API here
+#### ITEMTYPE
 
-🚫Replace text below with a description of the API
+---
 
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
+```
+// This is used for keeping track of inventory as well as generating the drop downs for transactions
+{
+    id: long, // (generated value)
+    name: string,
+    transactions: [transactionItem, ...],
+    active: boolean,
+    quantity: int,
+}
+```
 
-## 2️⃣Requirements
+#### USERS
 
-🚫 These are examples, make sure this matches your project's requirements
+---
 
--   Minimum version of Android here
--   Android Studio
--   Gradle
-
+```
+{
+  id: long, // (generated value)
+  username: string, // (unique)
+  authority: ["ADMIN", "USER", ...]
+}
+```
+    
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
-
-Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
-
-### Issue/Bug Request
-
-    ## Contributing
-
-When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
-
-Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ### Issue/Bug Request
 
@@ -137,14 +287,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](_link to your backend readme here_) for details on the backend of our project.
-
-
-[swift-image]: https://img.shields.io/badge/swift-3.0-orange.svg
-[swift-url]: https://swift.org/
-[license-image]: https://img.shields.io/badge/License-MIT-blue.svg
-[license-url]: LICENSE
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[codebeat-image]: https://codebeat.co/badges/c19b47ea-2f9d-45df-8458-b2d952fe9dad
-[codebeat-url]: https://codebeat.co/projects/github-com-vsouza-awesomeios-com
+See [Frontend Documentation](https://github.com/labs13-agriculture/front-end) for details on the fronend of our project.
